@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌱 Greenova Retro Challenge 🌿</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+ /* ===== RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Press Start 2P', cursive;
+      color: #1a3e2a;
+      background-image: url('img/beranda1.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+
+@keyframes flicker{
+    50% { opacity: .8; }
+}
+
+    /* ===== HEADER ===== */
+    header {
+      background: rgba(240, 255, 240, 0.85);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+      border-bottom: 3px solid #1a3e2a;
+      flex-wrap: wrap;
+            position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 14px;
+      color: #1a3e2a;
+      margin-bottom: 10px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #1a3e2a;
+      margin: 0 10px;
+      transition: 0.2s;
+      font-size: 10px;
+    }
+
+    nav a:hover {
+      color: #2e8b57;
+    }
+
+    .join-btn1 {
+      background: #2e8b57;
+      color: #fff;
+      padding: 10px 20px;
+      border: 3px solid #1a3e2a;
+      cursor: pointer;
+      font-size: 10px;
+      margin-top: 10px;
+    }
+
+    .join-btn1:hover {
+      background: #3fbf78;
+    }
+
+
+/* ===== Progress Bar (Selalu Terlihat) ===== */
+
+
+/* ===== Animasi Daun Jatuh ===== */
+/* @keyframes fall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+.leaf {
+  position: fixed;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  background: #00ff66;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  opacity: 0.7;
+  animation: fall linear infinite;
+}
+.leaf:nth-child(odd) { background: #66ff99; } */
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+/* ===== Login ===== */
+.login {
+  text-align: center;
+  margin-top: 100px;
+}
+.login input {
+  padding: 10px;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  background: rgba(240, 255, 240, 0.85);
+  color: #000000;
+  font-family: 'Press Start 2P';
+  font-size: 10px;
+  width: 220px;
+  animation: fadeIn 1s ease;
+}
+.login button {
+  margin-top: 10px;
+  background: #2e8b57;
+  color: #ffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 10px;
+  cursor: pointer;
+  font-family: 'Press Start 2P';
+  transition: 0.3s;
+    animation: fadeIn 1s ease;
+  
+}
+.login button:hover {
+  background: #6bff94;
+  box-shadow: 0 0 10px #00ff66;
+}
+
+/* ===== Container ===== */
+.container {
+  padding: 20px;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  animation: fadeIn 1s ease;
+}
+
+/* ===== Card ===== */
+.card {
+      background: rgba(240, 255, 240, 0.85);
+  border: 2px solid #000000;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #000000a8;
+  padding: 15px;
+  transition: 0.3s;
+  text-align: center;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px #000000;
+}
+.card h3 { color: #000000; font-size: 12px; }
+.card p { font-size: 10px; color: #000000; }
+
+/* ===== Tombol Challenge ===== */
+button.join-btn {
+  background: #2e8b57;
+  border: none;
+  color: #ffff;
+  font-family: 'Press Start 2P';
+  font-size: 9px;
+  padding: 8px 12px;
+  margin-top: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button.join-btn:hover {
+  background: #6bff94;
+  box-shadow: 0 0 10px #00ff66;
+}
+
+/* ===== Leaderboard ===== */
+.leaderboard {
+  margin: 40px 20px;
+      background: rgba(240, 255, 240, 0.85);
+      border: 3px solid #1a3e2a;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+   animation: fadeIn 1s ease;
+}
+.leaderboard h2 { font-size: 12px; color: #000000; margin-bottom: 10px; }
+.leaderboard table {
+  width: 100%;
+  font-size: 9px;
+  border-collapse: collapse;
+}
+.leaderboard th, .leaderboard td {
+  border: 1px solid #000000;
+  padding: 6px;
+}
+.leaderboard th {
+      background: rgba(240, 255, 240, 0.85);
+  color: #000000;
+}
+.leaderboard tr:nth-child(even) {
+  background: rgba(0, 80, 40, 0.6);
+}
+
+/* ===== Animasi Tanam Pohon ===== */
+.tree {
+  width: 40px;
+  height: 60px;
+  margin: 0 auto;
+  position: relative;
+  background: linear-gradient(#3b873b, #1b5e20);
+  border-radius: 50% 50% 0 0;
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.6s ease-out;
+}
+/* .tree.planted {
+  opacity: 1;
+  transform: scale(1);
+} */
+.trunk {
+  width: 10px;
+  height: 20px;
+  background: #6b4226;
+  position: absolute;
+  bottom: -20px;
+  left: 15px;
+  border-radius: 3px;
+}
+
+
+@media (max-width: 768px) {
+  .card h3 { font-size: 10px; }
+  .card p { font-size: 9px; }
+  button { font-size: 8px; }
+}
+/* ===================== RESPONSIVE ======================= */
+    button {
+      font-family: 'Press Start 2P', cursive;
+      padding: 12px 18px;
+      background: #1c7c1c;
+      border: 3px solid #0f4f0f;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+      border-radius: 6px;
+      font-size: 10px;
+    }
+
+    button:hover {
+      background: #34a834;
+    }
+
+    /* ===== RESPONSIVE BREAKPOINTS ===== */
+
+    /* Tablet */
+    @media (max-width: 992px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 12px;
+      }
+
+      .feature-text {
+        width: 90%;
+      }
+
+      .feature-box {
+        width: 200px;
+      }
+    }
+
+    /* HP */
+    @media (max-width: 600px) {
+      body {
+        background-attachment: scroll;
+      }
+
+      .hero {
+        padding: 60px 10px;
+      }
+
+      .hero h1 {
+        font-size: 10px;
+      }
+
+      nav a {
+        font-size: 8px;
+      }
+
+      .join-btn {
+        padding: 4px 10px;
+        font-size: 8px;
+      }
+
+      .feature-box {
+        width: 90%;
+      }
+
+      .feature-box p {
+        font-size: 7px;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      footer div {
+        margin-bottom: 15px;
+      }
+    }
+</style>
+</head>
+<body>
+  <header>
+    <div class="logo">🌿 EcoVerse</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="challenge.html">Challenge</a>
+      <a href="community.html">Community</a>
+      <a href="test.html">Showcase</a>
+    </nav>
+    <a href="profile.html"><button class="join-btn1">Profile Tim</button></a>
+  </header>
+
+<!-- Daun Jatuh -->
+<div id="leafContainer"></div>
+
+<section class="login" id="loginSection">
+  <input type="text" id="nickname" placeholder="Masukkan nickname...">
+  <br>
+  <button id="loginBtn">Masuk Game</button>
+</section>
+
+<section class="container" id="challengeSection" style="display:none;">
+  <div class="card">
+    <h3>🌱 Tanam Pohon</h3>
+    <p>Tanam minimal 1 pohon hari ini!</p>
+    <button class="join-btn" data-points="100" id="plantBtn">Tanam Sekarang</button>
+  </div>
+
+  <div class="card">
+    <h3>🚴 Hemat Energi</h3>
+    <p>Gunakan sepeda atau jalan kaki 3 hari.</p>
+    <button class="join-btn" data-points="60">Gunakan Sepeda</button>
+  </div>
+
+  <div class="card">
+    <h3>💧 Jaga Air</h3>
+    <p>Kurangi penggunaan air di rumah 2 hari.</p>
+    <button class="join-btn" data-points="50">Kurangi Air</button>
+  </div>
+
+  <div class="card">
+    <h3>♻️ Kurangi Plastik</h3>
+    <p>Tidak gunakan plastik sekali pakai 5 hari.</p>
+    <button class="join-btn" data-points="80">Kurangi Plastik</button>
+  </div>
+
+  <div class="card">
+    <h3>🌞 Energi Surya</h3>
+    <p>Gunakan sinar matahari untuk menjemur atau menyalakan lampu surya.</p>
+    <button class="join-btn" data-points="70">Gunakan Surya</button>
+  </div>
+</section>
+
+<section class="leaderboard" id="leaderboardSection" style="display:none;">
+  <h2>🏆 Leaderboard</h2>
+  <table id="leaderboardTable">
+    <tr><th>Peringkat</th><th>Nama</th><th>Poin</th></tr>
+  </table>
+</section>
+
+<script>
+const leafContainer = document.getElementById("leafContainer");
+for (let i = 0; i < 12; i++) {
+  const leaf = document.createElement("div");
+  leaf.classList.add("leaf");
+  leaf.style.left = Math.random() * 100 + "vw";
+  leaf.style.animationDuration = 4 + Math.random() * 4 + "s";
+  leaf.style.animationDelay = Math.random() * 5 + "s";
+  leafContainer.appendChild(leaf);
+}
+
+const loginBtn = document.getElementById('loginBtn');
+const nicknameInput = document.getElementById('nickname');
+const challengeSection = document.getElementById('challengeSection');
+const leaderboardSection = document.getElementById('leaderboardSection');
+const loginSection = document.getElementById('loginSection');
+const leaderboardTable = document.getElementById('leaderboardTable');
+const progressBar = document.getElementById('progressBar');
+const tree = document.getElementById('tree');
+const plantBtn = document.getElementById('plantBtn');
+
+let leaderboard = JSON.parse(localStorage.getItem('leaderbord')) || [];
+let totalPoints = 0;
+
+function updateLeaderboard() {
+  leaderboard.sort((a,b) => b.points - a.points);
+  leaderboardTable.innerHTML = '<tr><th>Peringkat</th><th>Nama</th><th>Poin</th></tr>';
+  leaderboard.forEach((user, index) => {
+    leaderboardTable.innerHTML += `<tr><td>${index+1}</td><td>${user.name}</td><td>${user.points}</td></tr>`;
+  });
+  localStorage.setItem('leaderboard', JSON.stringify(leaderbord));
+}
+
+loginBtn.addEventListener('click', () => {
+  const name = nicknameInput.value.trim();
+  if (!name) return alert('Masukkan nickname dulu!');
+  loginSection.style.display = 'none';
+  challengeSection.style.display = 'grid';
+  leaderboardSection.style.display = 'block';
+  if (!leaderboard.find(u => u.name === name)) {
+    leaderboard.push({ name, points: 0 });
+  }
+  window.currentUser = name;
+  updateLeaderboard();
+});
+
+document.querySelectorAll('.join-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.disabled = true;
+    btn.textContent = "Selesai!";
+    const points = parseInt(btn.getAttribute('data-points'));
+    const user = leaderboard.find(u => u.name === window.currentUser);
+    user.points += points;
+    totalPoints = user.points;
+    updateLeaderboard();
+    updateProgressBar();
+  });
+});
+
+function updateProgressBar() {
+  let level = Math.min(totalPoints / 500 * 100, 100);
+  progressBar.style.width = level + "%";
+}
+
+/* Animasi Tanam Pohon */
+plantBtn.addEventListener('click', () => {
+  tree.classList.add('planted');
+});
+updateLeaderboard();
+</script>
+
+
+
+</body>
+</html>
