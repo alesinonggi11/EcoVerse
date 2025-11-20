@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EcoVerse — Challenge (Hybrid Forest Green)</title>
+
+  <!-- Fonts: Press Start (titles) + Inter (body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <style>
+  /* =========================
+     Variables (Forest Green Hybrid)
+     ========================= */
+  :root{
+    --bg: #f5fbf7;
+    --card-bg: rgba(240, 255, 240, 0.85);
+    --text: #143d23;
+    --muted: #2f6b46;
+    --accent: #1d823f;     /* primary green */
+    --accent-2: #34bf6a;   /* highlight green */
+    --pixel-border: #163e24;
+    --glass: rgba(255,255,255,0.6);
+    --shadow: 0 8px 20px rgba(16,40,24,0.08);
+    --radius: 12px;
+    --crt-color: rgba(0,0,0,0.02);
+  }
+
+    /* PIXEL NIGHT MODE */
+/* ===========================================  */
+
+/* Tombol ganti mode */
+.night-btn {
+  padding: 8px 14px;
+  font-size: 10px;
+  margin: 20px;
+  background: #0d3b66;
+  border: 3px solid #082641;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+.night-btn:hover {
+  background: #144a7d;
+}
+/* ===== NIGHT MODE TEXT FIX ===== */
+.night-mode,
+.night-mode h1,
+.night-mode h2,
+.night-mode h3,
+.night-mode p,
+.night-mode a,
+.night-mode span {
+  color: hsla(0, 100%, 1%, 0.94) !important;       
+  text-shadow: 0 0 5px hwb(0 100% 0%);    
+}
+/* ===== HERO BOX TRANSPARENT ON NIGHT MODE ===== */
+.night-mode .feature-text {
+  background: hwb(0 0% 100% / 0) !important; /* full transparan */
+  border-color: lab(14.97% 3.29 1.21 / 0.4) !important; /* border lembut */
+  box-shadow: none !important; /* hilangkan efek saudara kalau ada */
+}
+
+/* Teks tetap terlihat */
+.night-mode .feature-text h1,
+.night-mode .feature-text p {
+  color: #e8faff !important; /* putih kebiruan */
+  text-shadow: 0 0 6px #050c0e; /* glow agar tidak tenggelam */
+}
+
+/* Mode malam untuk body */
+.night-mode {
+  background: #0a1b2c !important;
+  color: #d4f4ff !important;
+}
+
+/* Background malam lebih gelap */
+.night-mode .feature-text,
+.night-mode header,
+.night-mode footer,
+.night-mode .feature-box,
+.night-mode .stats {
+  background: rgba(10, 20, 40, 0.7) !important;
+  color: #d4f4ff !important;
+  border-color: #7be3ff !important;
+}
+/* ===== BENEFIT BOX TEXT — NIGHT MODE ===== */
+.night-mode .feature-box h3,
+.night-mode .feature-box p {
+  color: #000 !important;   /* hitam pekat */
+  text-shadow: none !important; /* hilangkan glow agar tidak abu */
+}
+
+/* Border & background tetap, tapi bisa kamu ubah kalau mau */
+.night-mode .feature-box {
+  background: #ffffffd9 !important; /* tetap terang */
+  border-color: #ffffff !important;
+}
+/* ===== BENEFIT BOX — NIGHT MODE ===== */
+.night-mode .benefit-box,
+.night-mode .benefit-box * {
+  color: #000 !important;        /* teks hitam */
+  text-shadow: none !important;  /* hilangkan stroke/shadow */
+}
+/* ===== FOOTER NIGHT MODE (TEXT ONLY) ===== */
+.night-mode footer h3,
+.night-mode footer p,
+.night-mode footer a {
+  color: #ffffff !important;     /* putih */
+  text-shadow: none !important;
+}
+
+.night-mode footer a:hover {
+  color: #aef5c1 !important;     /* putih kehijauan saat hover */
+}
+
+
+/* Awan memudar */
+.night-mode .cloud {
+  opacity: 0;
+  transition: opacity 1.5s ease-out;
+}
+
+/* Bintang lebih banyak */
+.star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  image-rendering: pixelated;
+  animation: twinkle 1.4s infinite alternate ease-in-out;
+  opacity: 0.8;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.3; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.4); }
+}
+@keyframes neon-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+        @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    } 
+
+.night-mode .feature-text h1 {
+  animation: neon-flicker 2.5s infinite ease-in-out;
+}
+/* Neon effect pada menu */
+.night-mode nav a {
+  color: #8fffe0 !important;
+  text-shadow: 0 0 4px #00ffbf, 0 0 8px #00ffc8;
+}
+
+
+  /* Night mode variables (applied when body.night-mode) */
+  body.night-mode {
+    --bg: #071219;
+    --card-bg: rgba(6,12,18,0.45);
+    --text: #e6fff4;
+    --muted: #9fe9bf;
+    --accent: #19ff7a;
+    --accent-2: #4bff9b;
+    --pixel-border: #06321c;
+    --glass: rgba(8,14,20,0.45);
+    --shadow: 0 10px 30px rgba(0,0,0,0.45);
+    --crt-color: rgba(255,255,255,0.02);
+  }
+
+  /* =========================
+     Reset & fundamentals
+     ========================= */
+  * { box-sizing: border-box; margin:0; padding:0; }
+  html,body { height:100%; }
+  body {
+    font-family: 'Press Start 2P', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: url('img/beranda1.png') center/cover fixed no-repeat;
+    color: var(--text);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+    overflow-x: hidden;
+  }
+
+  /* Container width helper */
+  .wrap { width:92%; max-width:1100px; margin:0 auto; }
+
+  /* =========================
+     Pixel accents + headings
+     ========================= */
+  h1,h2,h3 { font-family: 'Press Start 2P', monospace; color:var(--muted); }
+  h1 { font-size:20px; margin-bottom:6px; }
+  h2 { font-size:13px; margin-bottom:8px; }
+  h3 { font-size:11px; margin-bottom:6px; }
+
+  p { font-family: 'Inter'; font-size:13px; color:var(--text); margin-bottom:8px; }
+
+  /* =========================
+     Header
+     ========================= */
+  header.site-header {
+          background: rgba(240, 255, 240, 0.85);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+      border-bottom: 3px solid #1a3e2a;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-wrap: wrap;
+  }
+  .site-header .wrap {
+    display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 0;
+  }
+  .logo { display:flex; align-items:center; font-family: 'Press Start 2P', cursive; gap:10px; font-size:13px; color:var(--var); }
+  .logo .brand { font-family: 'Press Start 2P'; font-size:12px; color:var(--accent); }
+
+  nav.main-nav { display:flex; gap:12px; align-items:center; }
+  nav.main-nav a {
+    text-decoration:none; color:var(--text); font-size:12px; padding:6px 8px; border-radius:6px;
+    transition: all .18s ease;
+  }
+  nav.main-nav a:hover {
+    color:var(--accent);
+    box-shadow: 0 4px 0 var(--pixel-border);
+    transform: translateY(-2px);
+  }
+
+  .header-actions { display:flex; gap:10px; align-items:center; }
+  .btn {
+    font-family: 'Press Start 2P';
+    font-weight:600;
+    background:var(--accent);
+    color:white;
+    border: none;
+    padding:8px 12px;
+    border-radius:8px;
+    cursor:pointer;
+    box-shadow: 0 6px 0 rgba(0,0,0,0.08);
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+      button {
+      font-family: 'Press Start 2P', cursive;
+      padding: 12px 18px;
+      background: #1c7c1c;
+      border: 3px solid #0f4f0f;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+      border-radius: 6px;
+      font-size: 10px;
+    }
+        /* ===== HEADER ===== */
+    header {
+      background: rgba(240, 255, 240, 0.85);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+      border-bottom: 3px solid #1a3e2a;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #1a3e2a;
+      font-size: 10px;
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      color: #2e8b57;
+    }
+
+    .join-bt1 {
+      padding: 8px 16px;
+      margin-top: 8px;
+    }
+
+  .btn:hover { transform:translateY(-3px); }
+  .btn.ghost { background:transparent; color:black; border:2px solid var(--pixel-border); box-shadow:none; font-weight:600; }
+
+  .night-toggle { background:transparent; border:2px solid var(--pixel-border); color:var(--text); padding:7px 10px; border-radius:8px; cursor:pointer; }
+
+  /* =========================
+     Hero / Intro
+     ========================= */
+  .hero {
+    padding:44px 0;
+    animation: fadeIn 1s ease;
+  }
+  .hero-card {
+    background: rgba(240, 255, 240, 0.85);
+    border:3px solid var(--pixel-border);
+    border-radius:var(--radius);
+    padding:26px;
+    box-shadow: var(--shadow);
+    display:flex; gap:20px; align-items:center;
+    position:relative; overflow:hidden;
+  }
+
+  .hero-left { flex:1; min-width:260px; }
+  .hero-right { width:200px; display:flex; align-items:center; justify-content:center; }
+
+  .hero-title { font-family: 'Press Start 2P'; font-size:16px; color:black; margin-bottom:6px; }
+  .hero-desc { font-family: Inter; font-size:13px; color:black; }
+
+  /* glass / transparent in night-mode handled by variables; add special class if want full transparent */
+  body.night-mode .hero-card { background: rgba(240, 255, 240, 0.85); box-shadow:none; border-color: rgba(255,255,255,0.06); }
+/* Tombol Eco Starter & Tree Planter */
+.eco-btn {
+  font-family: 'Inter';
+  font-weight:700;
+  background: var(--accent-2);
+  color: #01210e;
+  border: 2px solid var(--pixel-border);
+  padding:10px 14px;       /* lebih besar */
+  border-radius:10px;
+  cursor:pointer;
+  font-size:13px;
+  min-width:120px;          /* agar tombol seragam */
+  text-align:center;
+  box-shadow: 0 6px 0 rgba(0,0,0,0.08);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.eco-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 0 rgba(0,0,0,0.1);
+}
+
+  /* =========================
+     Dashboard
+     ========================= */
+  .dashboard {
+    margin-top:18px;
+    display:grid; grid-template-columns: 1fr 340px; gap:18px;
+    align-items:start;
+  }
+  .dash-main {
+    background: rgba(240, 255, 240, 0.85); border-radius:12px; padding:18px; border:3px solid var(--pixel-border); box-shadow:var(--shadow);
+  }
+  .dash-side {
+    background: var(--card-bg); border-radius:12px; padding:18px; border:3px solid var(--pixel-border); box-shadow:var(--shadow);
+  }
+
+  .progress-track { width:100%; height:16px; border-radius:10px; background:#f0f7ef; border:2px solid var(--pixel-border); overflow:hidden; }
+  .progress-bar { height:100%; width:0%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width .5s ease; }
+
+  /* =========================
+     Grid Challenges
+     ========================= */
+  .grid {
+    margin-top:20px;
+    display:grid; gap:16px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+
+  .card {
+    background: rgba(240, 255, 240, 0.85); border:2px solid var(--pixel-border); padding:14px; border-radius:10px; box-shadow: 0 6px 0 rgba(0,0,0,0.06);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .card:hover { transform: translateY(-8px); box-shadow: 0 20px 30px rgba(0,0,0,0.08); }
+  .card h3 { font-size:13px; color:var(--accent); }
+  .card p { font-size:12px; color:var(--text); margin-bottom:12px; }
+  .card .small { font-size:11px; color:var(--muted); }
+
+  .join-btn { background: var(--accent-2); color: #01210e; padding:8px 10px; border-radius:8px; border:none; cursor:pointer; font-weight:700; }
+  .join-btn[disabled]{ opacity:.6; filter:grayscale(.2); cursor:default; transform:none; }
+
+  /* =========================
+     Popup (avatar & challenge)
+     ========================= */
+  .overlay {
+    position:fixed; inset:0; background: rgba(2,6,2,0.6); display:none; z-index:120; align-items:center; justify-content:center;
+  }
+  .modal {
+    width:340px; max-width:92%; background:var(--card-bg); border-radius:12px; padding:16px; border:3px solid var(--pixel-border);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  }
+  .avatar-grid { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-top:8px; }
+  .avatar-item { background:#eafaf0; padding:10px; border-radius:8px; border:2px solid var(--pixel-border); cursor:pointer; font-size:20px; }
+  .avatar-item:hover { transform:scale(1.08); }
+
+  /* Leaderboard */
+  .leaderboard { margin-top:20px; background: rgba(240, 255, 240, 0.85); border-radius:12px; padding:12px; border:3px solid var(--pixel-border); box-shadow:var(--shadow); }
+  .leaderboard table { width:100%; border-collapse:collapse; font-size:13px; }
+  .leaderboard th, .leaderboard td { padding:8px; border-bottom:1px dashed rgba(0,0,0,0.06); text-align:left; background: rgba(240, 255, 240, 0.85); color: #000;}
+
+  /* Footer */
+  footer.site-footer { margin-top:40px; padding:12px 0; background:transparent; text-align:center; font-size:12px; color:var(--muted); border-top:3px solid var(--accent); }
+  footer .small { font-size:11px; color:var(--muted); }
+
+  /* =========================
+     Pixel FX & decorative (clouds, leaves, stars)
+     ========================= */
+  .pixel-cloud { position:fixed; top:50px; left:-200px; width:120px; opacity:0.85; image-rendering:pixelated; z-index:5; animation:cloudMove 36s linear infinite; }
+  .pixel-cloud.c2 { top:110px; width:160px; animation-duration:48s; opacity:0.7; }
+  @keyframes cloudMove { from { transform:translateX(-250px) } to { transform:translateX(110vw) } }
+
+  .star-layer { position:fixed; inset:0; pointer-events:none; z-index:4; }
+  .star { position:absolute; width:3px; height:3px; background:white; image-rendering:pixelated; opacity:0.85; animation:tw 1.8s infinite alternate; }
+  @keyframes tw { from { opacity:.28 } to { opacity:1 } }
+
+  .leaves { position:fixed; inset:0; pointer-events:none; z-index:6; }
+  .leaf { position:absolute; width:16px; height:16px; image-rendering:pixelated; opacity:0.9; animation:leafFall linear infinite; }
+  @keyframes leafFall { from { transform: translateY(-40px) rotate(0deg) } to { transform: translateY(120vh) rotate(360deg) } }
+
+  /* CRT subtle */
+  .crt::after {
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background: repeating-linear-gradient(to bottom, var(--crt-color) 0px, transparent 3px);
+    mix-blend-mode: overlay; opacity: .75; z-index:2; pointer-events:none;
+  }
+
+  /* Pixel button burst on hover */
+  .pixel-burst {
+    position:relative; overflow:hidden;
+  }
+  .pixel-burst::after {
+    content:""; position:absolute; inset:0; background:
+      radial-gradient(#34bf6a 2px, transparent 3px) 0 0/6px 6px;
+    opacity:0; transition:opacity .18s ease, transform .25s ease;
+    transform: scale(.6);
+  }
+  .pixel-burst:hover::after { opacity:1; transform:scale(2.8); }
+
+    /* ===== RESPONSIVE BREAKPOINTS ===== */
+
+    /* Tablet */
+    @media (max-width: 992px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 12px;
+      }
+
+      .feature-text {
+        width: 90%;
+      }
+
+      .feature-box {
+        width: 200px;
+      }
+    }
+
+    /* HP */
+    @media (max-width: 600px) {
+      body {
+        background-attachment: scroll;
+      }
+
+      .hero {
+        padding: 60px 10px;
+      }
+
+      .hero h1 {
+        font-size: 10px;
+      }
+
+      nav a {
+        font-size: 8px;
+      }
+
+      .join-bt1 {
+        padding: 4px 10px;
+        font-size: 8px;
+      }
+
+      .feature-box {
+        width: 90%;
+      }
+
+      .feature-box p {
+        font-size: 7px;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      footer div {
+        margin-bottom: 15px;
+      }
+    }
+
+  /* small helper */
+  .muted { color:black; font-size:12px; }
+  .hide { display:none; }
+  </style>
+</head>
+<body class="challenge-page">
+
+  <!-- Decorative layers -->
+  <div class="star-layer" id="starLayer"></div>
+  <img src="img/pixel-cloud.png" alt="cloud" class="pixel-cloud c1" onerror="this.style.display='none'">
+  <img src="img/pixel-cloud.png" alt="cloud2" class="pixel-cloud c2" onerror="this.style.display='none'">
+  <div class="leaves" id="leafLayer"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="logo" style="">🌿 EcoVerse</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="challenge.html">Challenge</a>
+      <a href="community.html">Community</a>
+      <a href="test.html">Showcase</a>
+    </nav>
+    <a href="profile.html"><button class="join-bt1">Profile Tim</button></a>
+  </header>
+  <div class="header-actions">
+    <!-- <button class="btn ghost" id="openProfileBtn">Profile Tim</button> -->
+    <button id="toggleNight" class="night-btn">🌙 Mode Malam</button>
+    <button class="btn pixel-burst" id="startQuickBtn">Mulai Cepat</button>
+  </div>
+</div>
+
+  <!-- HERO / Intro -->
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-card crt">
+        <div class="hero-left">
+          <div class="hero-title">Eco-Challenge — Buat Bumi Lebih Baik</div>
+          <div class="hero-desc">Ikuti misi harian yang berdampak nyata — kumpulkan poin, naik level, dan dapatkan badge. Cocok untuk komunitas, sekolah, dan lomba.</div>
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn pixel-burst" id="ctaStart">Mulai Tantangan</button>
+            <button class="btn ghost" id="ctaHow">Cara Kerja</button>
+          </div>
+        </div>
+        <div class="hero-right">
+          <img src="img/bumi.png" alt="earth" style="width:128px; image-rendering:pixelated" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard -->
+    <section class="dashboard">
+      <div class="dash-main">
+        <div class="hero-title">DashBoard</div>
+        <div class="hero-desc">Status dan Progres Akun Kamu</div>
+
+        <div style="margin-top:12px;">
+          <div style="display:flex;gap:12px; align-items:center; justify-content:space-between;">
+            <div>
+              <div style="font-size:12px; font-weight:700; color:black;">Poin Kamu</div>
+              <div id="userPoints" style="font-size:18px; color:black; font-weight:800;">0</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:12px; color:black;">Level</div>
+              <div id="userLevel" style="font-weight:800; font-size:18px; color:var(--accent-2);">0</div>
+            </div>
+          </div>
+
+          <div style="margin-top:16px;">
+            <div style="font-size:12px; margin-bottom:8px; color:black;">Progress menuju level berikutnya</div>
+            <div class="progress-track">
+              <div class="progress-bar" id="progressBar"></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:14px; display:flex; gap:10px;">
+          <button class="btn" id="enterChallenges">Lihat Tantangan</button>
+          <button class="btn ghost" id="openLeaderboard">Leaderboard</button>
+        </div>
+      </div>
+
+
+
+    </section>
+
+    <!-- Challenges Grid -->
+    <section id="challengesArea" class="wrap" style="margin-top:24px;">
+      <div class="grid" id="challengeGrid">
+        <!-- Cards populated in JS for clarity -->
+      </div>
+    </section>
+
+    <!-- Leaderboard -->
+    <section id="leaderboardArea" style="margin-top:18px; background: rgba(240, 255, 240, 0.85);">
+      <div class="leaderboard" id="leaderboardBox">
+        <h3>🏆 Leaderboard</h3>
+        <table id="leaderboardTable" aria-live="polite"><thead><tr><th>#</th><th>Nama</th><th>Poin</th></tr></thead><tbody></tbody></table>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="small">© <span id="year"></span> EcoVerse — Hybrid Forest Green • Challenge</div>
+    </footer>
+  </main>
+
+  <!-- Overlays: Avatar & Challenge -->
+  <div class="overlay" id="avatarOverlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="avatarTitle">
+      <h3 id="avatarTitle">Pilih Avatar</h3>
+      <div class="avatar-grid" id="avatarGrid">
+        <div class="avatar-item" data-avatar="🌱">🌱</div>
+        <div class="avatar-item" data-avatar="🦊">🦊</div>
+        <div class="avatar-item" data-avatar="🐢">🐢</div>
+        <div class="avatar-item" data-avatar="🐦">🐦</div>
+        <div class="avatar-item" data-avatar="🐼">🐼</div>
+        <div class="avatar-item" data-avatar="🌳">🌳</div>
+      </div>
+      <div style="margin-top:12px; display:flex; gap:8px; justify-content:center;">
+        <button class="btn" id="confirmAvatarBtn">Pilih</button>
+        <button class="btn ghost" id="cancelAvatarBtn">Batal</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="challengeOverlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" id="challengeModal">
+      <h3 id="modalTitle">Judul Challenge</h3>
+      <p id="modalDesc">Deskripsi ...</p>
+
+      <div style="margin-top:8px;">
+        <label style="font-size:12px;">Upload Bukti (opsional)</label>
+        <input type="file" id="evidenceFile" accept="image/*" style="width:100%; margin-top:6px;">
+      </div>
+
+      <div style="margin-top:12px; display:flex; gap:8px; justify-content:center;">
+        <button class="btn" id="claimBtn">Selesai & Klaim</button>
+        <button class="btn ghost" id="closeChallengeModal">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================
+       SCRIPTS (Logic & Effects)
+       ========================= -->
+  <script>
+  // -----------------------
+  // Utilities & data
+  // -----------------------
+  const YEAR = new Date().getFullYear();
+  document.getElementById('year').textContent = YEAR;
+
+  const CHALLENGES = [
+    { id:'c_tree', title:' 🌱Tanam Pohon', desc:'Tanam minimal 1 pohon. Upload bukti foto untuk klaim.', points:100 },
+    { id:'c_bike', title:'🚴 Hemat Energi', desc:'Gunakan sepeda atau jalan kaki 3 hari.', points:60 },
+    { id:'c_water', title:'💧 Jaga Air', desc:'Kurangi penggunaan air selama 2 hari.', points:50 },
+    { id:'c_plastic', title:'♻ Kurangi Plastik', desc:'Hindari plastik sekali pakai selama 5 hari.', points:80 },
+    { id:'c_solar', title:'🌞 Energi Surya', desc:'Gunakan energi surya untuk kegiatan sederhana.', points:70 },
+    { id:'c_forest', title:'🌳 Jaga Hutan', desc:'Ikut kegiatan pelestarian hutan atau kampanye.', points:70 }
+  ];
+
+  // localStorage keys
+  const LS_USERS = 'ev_users_v1';
+  const LS_NIGHT = 'ev_night_v1';
+  const LS_CURRENT = 'ev_current_v1';
+
+  
+  // -----------------------
+  // Users & leaderboard (simple local storage)
+  // -----------------------
+  let users = JSON.parse(localStorage.getItem(LS_USERS) || '[]');
+  let current = JSON.parse(localStorage.getItem(LS_CURRENT) || 'null'); // {name, avatar, points}
+
+  function saveAll(){
+    localStorage.setItem(LS_USERS, JSON.stringify(users));
+    localStorage.setItem(LS_CURRENT, JSON.stringify(current));
+  }
+
+  function findOrCreateUser(name, avatar='🌱'){
+    let u = users.find(x=> x.name===name);
+    if(!u){
+      u = { name, avatar, points:0 };
+      users.push(u);
+    }
+    return u;
+  }
+
+  // update header/dashboard UI
+  function refreshUserUI(){
+    const pointsEl = document.getElementById('userPoints');
+    const levelEl = document.getElementById('userLevel');
+    const pct = document.getElementById('progressBar');
+    if(!current){ pointsEl.textContent='—'; levelEl.textContent='—'; pct.style.width='0%'; return; }
+    pointsEl.textContent = current.points;
+    const level = Math.floor(current.points / 200) + 1;
+    levelEl.textContent = level;
+    const pctVal = Math.min((current.points % 200) / 200 * 100, 100);
+    pct.style.width = pctVal + '%';
+  }
+
+  // render leaderboard table
+  function renderLeaderboard(){
+    const tbody = document.querySelector('#leaderboardTable tbody');
+    tbody.innerHTML = '';
+    const sorted = [...users].sort((a,b)=> b.points - a.points).slice(0,50);
+    sorted.forEach((u,i)=>{
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td style="width:40px">${i+1}</td><td>${u.avatar} ${u.name}</td><td style="text-align:right">${u.points}</td>`;
+      tbody.appendChild(tr);
+    });
+  }
+  
+
+  // -----------------------
+  // Populate challenge cards
+  // -----------------------
+  const grid = document.getElementById('challengeGrid');
+  function renderChallenges(){
+    grid.innerHTML = '';
+    CHALLENGES.forEach(ch=>{
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.innerHTML = `
+        <h3>${ch.title}</h3>
+        <p class="small">${ch.desc}</p>
+        <div style="display:flex; gap:10px; justify-content:space-between; align-items:center;">
+          <div class="muted">Poin: <strong>${ch.points}</strong></div>
+          <div>
+            <button class="join-btn pixel-burst" data-id="${ch.id}" data-pts="${ch.points}">Detail</button>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+    // attach handlers
+    grid.querySelectorAll('.join-btn').forEach(b=>{
+      b.addEventListener('click', (e)=>{
+        const id = b.dataset.id;
+        const ch = CHALLENGES.find(x=>x.id===id);
+        openChallengeModal(ch);
+      });
+    });
+  }
+  renderChallenges();
+
+  // -----------------------
+  // Avatar flow & login
+  // -----------------------
+  const avatarOverlay = document.getElementById('avatarOverlay');
+  const avatarGrid = document.getElementById('avatarGrid');
+  const confirmAvatarBtn = document.getElementById('confirmAvatarBtn');
+  const cancelAvatarBtn = document.getElementById('cancelAvatarBtn');
+
+  let tempUserName = null; let tempAvatar = '🌱';
+
+  // Quickstart / open avatar
+  document.getElementById('ctaStart').addEventListener('click', ()=> showAvatarFlow());
+  document.getElementById('startQuickBtn').addEventListener('click', ()=> showAvatarFlow());
+  // document.getElementById('openProfileBtn').addEventListener('click', ()=> alert('Halaman profile belum dikembangkan dalam demo ini.'));
+
+  function showAvatarFlow(){
+    tempUserName = prompt('Masukkan nickname singkat untuk leaderboard:');
+    if(!tempUserName) return;
+    // show avatar overlay
+    avatarOverlay.style.display = 'flex';
+    avatarOverlay.setAttribute('aria-hidden','false');
+  }
+
+  avatarGrid.querySelectorAll('.avatar-item').forEach(it=>{
+    it.addEventListener('click', ()=> {
+      // visual selection
+      avatarGrid.querySelectorAll('.avatar-item').forEach(x=> x.style.boxShadow='none');
+      it.style.boxShadow = '0 6px 0 rgba(0,0,0,0.08)';
+      tempAvatar = it.getAttribute('data-avatar') || '🌱';
+    });
+  });
+
+  confirmAvatarBtn.addEventListener('click', ()=>{
+    if(!tempUserName) { alert('Tidak ada nickname'); return; }
+    const u = findOrCreateUser(tempUserName, tempAvatar);
+    current = u;
+    saveAll();
+    avatarOverlay.style.display = 'none';
+    avatarOverlay.setAttribute('aria-hidden','true');
+    // show dashboard & refresh
+    document.querySelector('.dashboard').scrollIntoView({behavior:'smooth'});
+    refreshUserUI();
+    renderLeaderboard();
+    // show challenges automatically
+    document.getElementById('enterChallenges').click();
+  });
+
+  cancelAvatarBtn.addEventListener('click', ()=>{
+    avatarOverlay.style.display = 'none';
+    avatarOverlay.setAttribute('aria-hidden','true');
+  });
+
+  // -----------------------
+  // Challenge modal flow
+  // -----------------------
+  const challengeOverlay = document.getElementById('challengeOverlay');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDesc = document.getElementById('modalDesc');
+  const claimBtn = document.getElementById('claimBtn');
+  const closeChallengeModal = document.getElementById('closeChallengeModal');
+  let activeChallenge = null;
+
+  function openChallengeModal(ch){
+    activeChallenge = ch;
+    modalTitle.textContent = ch.title;
+    modalDesc.textContent = ch.desc + "\\n\\nPoin: " + ch.points;
+    challengeOverlay.style.display = 'flex';
+    challengeOverlay.setAttribute('aria-hidden','false');
+  }
+
+  closeChallengeModal.addEventListener('click', ()=> {
+    challengeOverlay.style.display = 'none';
+    challengeOverlay.setAttribute('aria-hidden','true');
+    activeChallenge = null;
+  });
+
+  claimBtn.addEventListener('click', ()=>{
+    if(!current) { alert('Silakan pilih nickname dulu (Mulai Cepat / Mulai Tantangan)'); return; }
+    // Award points
+    current.points = (current.points || 0) + (activeChallenge ? activeChallenge.points : 0);
+    // save & refresh
+    const found = users.find(u=>u.name===current.name);
+    if(found) found.points = current.points;
+    saveAll();
+    refreshUserUI();
+    renderLeaderboard();
+    // feedback
+    alert('Selamat! Poin telah ditambahkan.');
+    // auto-close
+    challengeOverlay.style.display = 'none';
+    activeChallenge = null;
+  });
+
+  // -----------------------
+  // Dashboard actions
+  // -----------------------
+  document.getElementById('enterChallenges').addEventListener('click', ()=>{
+    document.getElementById('challengesArea').scrollIntoView({behavior:'smooth'});
+  });
+
+  document.getElementById('openLeaderboard').addEventListener('click', ()=>{
+    document.getElementById('leaderboardBox').scrollIntoView({behavior:'smooth'});
+  });
+
+  // -----------------------
+  // Load stored state on init
+  // -----------------------
+  (function initFromStorage(){
+    users = JSON.parse(localStorage.getItem(LS_USERS) || '[]');
+    current = JSON.parse(localStorage.getItem(LS_CURRENT) || 'null');
+    renderLeaderboard();
+    refreshUserUI();
+  })();
+
+  // -----------------------
+  // Accessibility: close overlays with ESC
+  // -----------------------
+  window.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape'){
+      avatarOverlay.style.display='none'; avatarOverlay.setAttribute('aria-hidden','true');
+      challengeOverlay.style.display='none'; challengeOverlay.setAttribute('aria-hidden','true');
+    }
+  });
+
+  // -----------------------
+  // Simple animation: CTA scroll
+  // -----------------------
+  document.getElementById('ctaHow').addEventListener('click', ()=> {
+    alert('Cara kerja: 1) Pilih challenge 2) Lakukan aksi 3) Upload bukti/claim 4) Dapat poin & naik level.');
+  });
+
+  // -----------------------
+  // Lightweight: Persist after major actions
+  // -----------------------
+  window.addEventListener('beforeunload', ()=> {
+    saveAll();
+  });
+
+  /* ===== DAUN JATUH OTOMATIS ===== */
+const leafContainer = document.getElementById("leafContainer");
+
+function spawnLeaf() {
+  const leaf = document.createElement("div");
+  leaf.classList.add("pixel-leaf");
+
+  leaf.style.left = Math.random() * 100 + "vw";
+  leaf.style.animationDuration = (5 + Math.random() * 6) + "s";
+
+  leafContainer.appendChild(leaf);
+
+  setTimeout(() => leaf.remove(), 9000);
+}
+
+// generate daun tiap 700ms
+setInterval(spawnLeaf, 700);
+
+/* ===============================
+   GENERATE STAR RANDOM
+=============================== */
+function generateStars() {
+    for (let i = 0; i < 40; i++) {
+        const star = document.createElement("div");
+        star.classList.add("star");
+        star.style.left = Math.random() * window.innerWidth + "px";
+        star.style.top = Math.random() * window.innerHeight + "px";
+        star.style.animationDuration = (1 + Math.random()) + "s";
+        document.body.appendChild(star);
+    }
+}
+generateStars();
+
+/* ===============================
+   MODE MALAM OTOMATIS
+=============================== */
+function autoNightMode() {
+  let hour = new Date().getHours();
+  if (hour >= 18 || hour <= 5) {
+    document.body.classList.add("night-mode");
+    document.getElementById("toggleNight").textContent = "☀ Mode Siang";
+  }
+}
+autoNightMode();
+
+/* ===============================
+   TOGGLE MANUAL
+=============================== */
+document.getElementById("toggleNight").addEventListener("click", function () {
+  document.body.classList.toggle("night-mode");
+
+  if (document.body.classList.contains("night-mode")) {
+    this.textContent = "☀ Mode Siang";
+  } else {
+    this.textContent = "🌙 Mode Malam";
+  }
+});
+  </script>
+</body>
+</html>

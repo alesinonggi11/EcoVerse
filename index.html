@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoVerse Pixel</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    
+            @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    } 
+
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* GLOBAL */
+
+    /* ===== GLOBAL SECTION SPACING ===== */
+section {
+  padding: 60px 20px;     /* memberi ruang atas–bawah */
+  margin: 50px 0;         /* memberi jarak antar section */
+}
+
+/* Jika butuh lebih longgar */
+.section-wide {
+  padding: 80px 25px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  border-bottom: #000;
+  border-top: #000;
+}
+
+
+   /* ===== RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* ===== GLOBAL ===== */
+    body {
+      font-family: 'Press Start 2P', cursive;
+      color: #1a3e2a;
+      background: url('img/beranda1.png') center/cover fixed no-repeat;
+      overflow-x: hidden;
+    }
+
+    button {
+      font-family: 'Press Start 2P', cursive;
+      padding: 12px 18px;
+      background: #1c7c1c;
+      border: 3px solid #0f4f0f;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+      border-radius: 6px;
+      font-size: 10px;
+    }
+
+    button:hover {
+      background: #34a834;
+    }
+    /* ===== HEADER ===== */
+    header {
+      background: rgba(240, 255, 240, 0.85);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+      border-bottom: 3px solid #1a3e2a;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-wrap: wr ap;
+    }
+
+    .logo {
+      font-size: 14px;
+      margin-bottom: 8px;
+  
+    }
+
+    nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #1a3e2a;
+      font-size: 10px;
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      color: #2e8b57;
+    }
+
+    .join-btn {
+      padding: 8px 16px;
+      margin-top: 8px;
+    }
+    /* ===========================================
+   PIXEL NIGHT MODE
+=========================================== */
+
+/* Tombol ganti mode */
+.night-btn {
+  padding: 8px 14px;
+  font-size: 10px;
+  margin: 20px;
+  background: #0d3b66;
+  border: 3px solid #082641;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+.night-btn:hover {
+  background: #144a7d;
+}
+/* ===== NIGHT MODE TEXT FIX ===== */
+.night-mode,
+.night-mode h1,
+.night-mode h2,
+.night-mode h3,
+.night-mode p,
+.night-mode a,
+.night-mode span {
+  color: hsla(0, 100%, 1%, 0.94) !important;       
+  text-shadow: 0 0 5px hwb(0 100% 0%);    
+}
+/* ===== HERO BOX TRANSPARENT ON NIGHT MODE ===== */
+.night-mode .feature-text {
+  background: hwb(0 0% 100% / 0) !important; /* full transparan */
+  border-color: lab(14.97% 3.29 1.21 / 0.4) !important; /* border lembut */
+  box-shadow: none !important; /* hilangkan efek saudara kalau ada */
+}
+
+/* Teks tetap terlihat */
+.night-mode .feature-text h1,
+.night-mode .feature-text p {
+  color: #e8faff !important; /* putih kebiruan */
+  text-shadow: 0 0 6px #050c0e; /* glow agar tidak tenggelam */
+}
+
+/* Mode malam untuk body */
+.night-mode {
+  background: #0a1b2c !important;
+  color: #d4f4ff !important;
+}
+
+/* Background malam lebih gelap */
+.night-mode .feature-text,
+.night-mode header,
+.night-mode footer,
+.night-mode .feature-box,
+.night-mode .stats {
+  background: rgba(10, 20, 40, 0.7) !important;
+  color: #d4f4ff !important;
+  border-color: #7be3ff !important;
+}
+/* ===== BENEFIT BOX TEXT — NIGHT MODE ===== */
+.night-mode .feature-box h3,
+.night-mode .feature-box p {
+  color: #000 !important;   /* hitam pekat */
+  text-shadow: none !important; /* hilangkan glow agar tidak abu */
+}
+
+/* Border & background tetap, tapi bisa kamu ubah kalau mau */
+.night-mode .feature-box {
+  background: #ffffffd9 !important; /* tetap terang */
+  border-color: #ffffff !important;
+}
+/* ===== BENEFIT BOX — NIGHT MODE ===== */
+.night-mode .benefit-box,
+.night-mode .benefit-box * {
+  color: #000 !important;        /* teks hitam */
+  text-shadow: none !important;  /* hilangkan stroke/shadow */
+}
+/* ===== FOOTER NIGHT MODE (TEXT ONLY) ===== */
+.night-mode footer h3,
+.night-mode footer p,
+.night-mode footer a {
+  color: #ffffff !important;     /* putih */
+  text-shadow: none !important;
+}
+
+.night-mode footer a:hover {
+  color: #aef5c1 !important;     /* putih kehijauan saat hover */
+}
+
+
+/* Awan memudar */
+.night-mode .cloud {
+  opacity: 0;
+  transition: opacity 1.5s ease-out;
+}
+
+/* Bintang lebih banyak */
+.star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  image-rendering: pixelated;
+  animation: twinkle 1.4s infinite alternate ease-in-out;
+  opacity: 0.8;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.3; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.4); }
+}
+@keyframes neon-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+.night-mode .feature-text h1 {
+  animation: neon-flicker 2.5s infinite ease-in-out;
+}
+/* Neon effect pada menu */
+.night-mode nav a {
+  color: #8fffe0 !important;
+  text-shadow: 0 0 4px #00ffbf, 0 0 8px #00ffc8;
+}
+
+
+    /* HERO */
+    .hero {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      padding: 0px 20px;
+      animation: fadeIn 1s ease;
+    }
+
+    .hero-box {
+      max-width: 650px;
+      background: rgba(240, 255, 240, 0.9);
+      border: 3px solid #1a3e2a;
+      padding: 35px;
+      box-shadow: 3px 3px 0 #1a3e2a;
+      animation: fadeIn 1s ease;
+    }
+
+    .hero h1 {
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    /* APA ITU ECOVERSE */
+    .intro {
+      background: rgba(240, 255, 240, 0.433);
+      border-top: 3px solid #1a3e2a;
+      border-bottom: 3px solid #1a3e2a;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .intro h2 {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .intro p {
+      max-width: 700px;
+      margin: auto;
+      font-size: 10px;
+      line-height: 1.6;
+      color: #1a3e2a;
+
+
+    }
+
+    /* CARA KERJA */
+    .steps {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .steps h2 {
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .step-list {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .step {
+      width: 240px;
+      background: #f0fff0;
+      border: 3px solid #1a3e2a;
+      padding: 20px;
+      box-shadow: 3px 3px 0 #1a3e2a;
+    }
+
+    .step p {
+      font-size: 9px;
+      margin-top: 10px;
+      color: #1a3e2a;
+    }
+
+    /* BENEFIT */
+    .benefits {
+      padding: 60px 20px;
+      text-align: center;
+      background: rgba(240, 255, 240, 0.501);
+      border-top: 3px solid #1a3e2a;
+      border-bottom: 3px solid #1a3e2a;
+    }
+
+    .benefits h2 {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .benefit-box {
+      max-width: 750px;
+      margin: auto;
+      font-size: 10px;
+      line-height: 1.6;
+      border-bottom: #000;
+    }
+
+    /* FEATURES */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 50px 20px;
+    }
+
+    .feature-box {
+      width: 240px;
+      background: #f0fff0;
+      border: 3px solid #1a3e2a;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 3px 3px 0 #1a3e2a;
+    }
+
+    .feature-box1{
+      width: 240px;
+      background: #f0fff0;
+      border: 3px solid #1a3e2a;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 3px 3px 0 #1a3e2a;
+      font-family: "Inter", sans-serif;
+    }
+
+    .feature-box img {
+      width: 48px;
+      margin-bottom: 15px;
+      image-rendering: pixelated;
+    }
+
+    .feature-box h3 {
+      font-size: 10px;
+      margin-bottom: 10px;
+    }
+
+    .feature-box p {
+      font-size: 8px;
+      color: #2e8b57;
+    }
+
+    /* DONASI SECTION */
+    .stats-block {
+      background: rgba(255, 255, 255, 0.332);
+      border-top: 3px solid #1a3e2a;
+      border-bottom: 3px solid #1a3e2a;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .stats-container {
+      display:flex;
+      justify-content:center;
+      gap:40px;
+      flex-wrap:wrap;
+    }
+
+    .stat-box {
+      width:140px;
+      padding:20px;
+      background:white;
+      border:3px solid #1a3e2a;
+      box-shadow:3px 3px 0 #1a3e2a;
+    }
+
+    .stat-box h2 {
+      font-size:16px;
+      margin-bottom:8px;
+    }
+
+    .stat-box p {
+      font-size:9px;
+    }
+
+    #donateForm input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-family: 'Press Start 2P';
+      font-size: 10px;
+    }
+
+    #donateForm {
+      max-width: 350px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      display:none;
+      border: 3px solid #1a3e2a;
+    }
+
+    /* FOOTER */
+    footer {
+      background: rgba(240, 255, 240, 0.85);
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      padding: 15px !important;
+      border-top: 3px solid #1a3e2a;
+      font-size: 8px;
+    }
+      footer div {
+      margin-bottom: 8px !important; /* rapikan jarak */
+  }
+
+    footer h3 {
+      font-size: 10px;
+      margin-bottom: 10px;
+    }
+
+    footer a {
+      color: #1a3e2a;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+
+/* ===== ANIMASI AWAN BERGERAK ===== */
+
+.pixel-cloud {
+  position: fixed;
+  top: 60px;
+  width: 120px;
+  height: 70px;
+  background: url('awan.png') center/contain no-repeat;
+  image-rendering: pixelated;
+  opacity: 0.7;
+  animation: cloudMove 35s linear infinite;
+  z-index: 1;
+}
+
+.pixel-cloud.c2 {
+  top: 120px;
+  width: 150px;
+  animation-duration: 50s;
+  opacity: 0.55;
+}
+
+.pixel-cloud.c3 {
+  top: 180px;
+  width: 100px;
+  animation-duration: 42s;
+  opacity: 0.65;
+}
+
+@keyframes cloudMove {
+  0%   { transform: translateX(-200px); }
+  100% { transform: translateX(110vw); }
+}
+
+
+/* ===== DAUN JATUH PIXEL ===== */
+.pixel-leaf {
+  position: fixed;
+  top: -20px;
+  width: 18px;
+  height: 18px;
+  background: url('daun.png') center/contain no-repeat;
+  image-rendering: pixelated;
+  opacity: 0.8;
+  animation: leafFall linear infinite;
+  z-index: 2;
+}
+
+@keyframes leafFall {
+  0%   { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+/* ===== GLOW HERO ===== */
+.hero-box {
+  animation: glowPulse 3.5s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 8px #1a3e2a; }
+  50% { box-shadow: 0 0 16px #3fbf78; }
+  100% { box-shadow: 0 0 8px #1a3e2a; }
+}
+   /* ===== RESPONSIVE BREAKPOINTS ===== */
+
+    /* Tablet */
+    @media (max-width: 992px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 12px;
+      }
+
+      .feature-text {
+        width: 90%;
+      }
+
+      .feature-box {
+        width: 200px;
+      }
+    }
+
+    /* HP */
+    @media (max-width: 600px) {
+      body {
+        background-attachment: scroll;
+      }
+
+      .hero {
+        padding: 60px 10px;
+      }
+
+      .hero h1 {
+        font-size: 10px;
+      }
+
+      nav a {
+        font-size: 8px;
+      }
+
+      .join-btn {
+        padding: 4px 10px;
+        font-size: 8px;
+      }
+
+      .feature-box {
+        width: 90%;
+      }
+
+      .feature-box p {
+        font-size: 7px;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      footer div {
+        margin-bottom: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<body>
+
+<!-- AWAN PIXEL -->
+<div class="pixel-cloud c1"></div>
+<div class="pixel-cloud c2"></div>
+<div class="pixel-cloud c3"></div>
+
+<!-- DAUN JATUH -->
+<div id="leafContainer"></div>
+  <header>
+    <div class="logo">🌿 EcoVerse</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="challenge.html">Challenge</a>
+      <a href="community.html">Community</a>
+      <a href="test.html">Showcase</a>
+    </nav>
+    <a href="profile.html"><button class="join-btn">Profile Tim</button></a>
+  </header>
+  <button id="toggleNight" class="night-btn">🌙 Mode Malam</button>
+
+
+
+<!-- HERO -->
+<section class="hero section-wide">
+  <div class="hero-box">
+    <h1>
+      Selamat datang di EcoVerse!  
+      Platform gamifikasi lingkungan yang mengubah kebiasaan kecil  
+      menjadi dampak besar bagi bumi 🌍💚
+    </h1>
+
+    <a href="challenge.html"><button style="margin-right:10px;">Mulai Challenge</button></a>
+    <a href="#donate"><button>Donasi</button></a>
+  </div>
+</section>
+
+<!-- APA ITU ECOVERSE -->
+<section class="intro section-wide">
+  <h2>Apa itu EcoVerse?</h2>
+  <p>
+    EcoVerse adalah aplikasi berbasis gamifikasi yang mengajak pengguna
+    melakukan aksi ramah lingkungan melalui tantangan harian seperti
+    mengurangi sampah plastik, menanam pohon, dan menghemat energi.
+    Setiap tindakan menghasilkan poin, level, dan badge sebagai bentuk apresiasi.
+  </p>
+</section>
+
+<!-- CARA KERJA -->
+<section class="steps section-wide">
+  <h2>Cara Kerja EcoVerse</h2>
+
+  <div class="step-list">
+    <div class="step">
+      <h3>1️⃣ Pilih Tantangan</h3>
+      <p>Pilih challenge ramah lingkungan seperti hemat energi, tanam pohon, dll.</p>
+    </div>
+
+    <div class="step">
+      <h3>2️⃣ Lakukan Aksinya</h3>
+      <p>Jalankan aksi nyata dalam kehidupan sehari-hari.</p>
+    </div>
+
+    <div class="step">
+      <h3>3️⃣ Dapatkan Poin + Badge</h3>
+      <p>Naik level, kumpulkan badge, dan tampilkan di profilmu.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFIT -->
+<section class="benefits section-wide">
+  <h2>Apa yang Kamu Dapat?</h2>
+  <div class="benefit-box">
+    • Poin dan level setiap menyelesaikan challenge  
+    • Badge penghargaan untuk setiap pencapaian  
+    • Leaderboard komunitas  
+    • Tracking progress aksi hijau  
+    • Profil personal yang bisa ditampilkan saat presentasi  
+  </div>
+</section>
+
+<!-- FITUR -->
+<section class="features section-wide">
+  <div class="feature-box">
+    <img src="img/leaf.png">
+    <h3>Green Challenge</h3>
+    <p>Tantangan hijau mingguan</p>
+  </div>
+
+  <div class="feature-box">
+    <img src="img/plant.png">
+    <h3>Eco Innovation</h3>
+    <p>Artikel & video inovasi hijau</p>
+  </div>
+
+  <div class="feature-box">
+    <img src="img/monitor.png">
+    <h3>Design Showcase</h3>
+    <p>Tempat karya ramah lingkungan</p>
+  </div>
+</section>
+
+<!-- DONASI -->
+<section class="stats-block section-wide">
+  <h2 id="donate">Donasi Untuk Program Hijau</h2>
+
+  <div class="features">
+    <div class="feature-box1">
+      <h2 id="donorCount">0</h2>
+      <p>Total Donatur</p>
+    </div>
+
+    <button onclick="toggleForm()" class="join-btn">Donasi Sekarang</button>
+
+    <div class="feature-box1">
+      <h2 id="totalAmount">0</h2>
+      <p>Total Donasi (Rp)</p>
+    </div>
+  </div>
+
+  <form id="donateForm" onsubmit="saveDonation(event)">
+    <input type="text" id="name" placeholder="Nama Anda" required>
+    <input type="number" id="amount" placeholder="Jumlah Donasi (Rp)" required>
+    <button type="submit">Kirim Donasi</button>
+  </form>
+</section>
+<!-- LINK GRUB -->
+<section class="features section-wide">
+  <div class="feature-box">
+    <img src="img/discord.png">
+    <h3>DISCORD</h3>
+    <p>Join Server Discord EcoVerse</p>
+    <a href="https://discord.gg/shdXr5hj"><button class="join-btn">JOIN</button></a>
+  </div>
+
+  <div class="feature-box">
+    <img src="img/whatsapp.png">
+    <h3>Eco Innovation</h3>
+    <p>join Grub Whatsapp EcoVerse</p>
+    <a href="https://chat.whatsapp.com/Cmhd75Z1PHFHBNaT4zr2yz"><button class="join-btn">JOIN</button></a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-left">
+    <h3>🌿 EcoVerse</h3>
+    <p class="footer-tagline">Eco Digital Community</p>
+  </div>
+
+  <div class="footer-social">
+    <h3>Social</h3>
+    <a href="https://instagram.com/ecoverse" target="_blank">📸 Instagram</a>
+    <a href="https://twitter.com/ecoverse" target="_blank">🐦 Twitter</a>
+    <a href="https://youtube.com/ecoverse" target="_blank">▶️ YouTube</a>
+  </div>
+
+  <div class="footer-links">
+    <h3>Menu</h3>
+    <a href="index.html">Home</a>
+    <a href="challenge.html">Challenge</a>
+    <a href="community.html">Community</a>
+    <a href="test.html">Showcase</a>
+  </div>
+</footer>
+
+
+<!-- SCRIPT DONASI -->
+<script>
+  let donorCount = localStorage.getItem("donorCount") ? parseInt(localStorage.getItem("donorCount")) : 0;
+  let totalAmount = localStorage.getItem("totalAmount") ? parseInt(localStorage.getItem("totalAmount")) : 0;
+
+  document.getElementById("donorCount").textContent = donorCount;
+  document.getElementById("totalAmount").textContent = totalAmount.toLocaleString();
+
+  function toggleForm() {
+      let form = document.getElementById("donateForm");
+      form.style.display = form.style.display === "none" || form.style.display === "" ? "block" : "none";
+  }
+
+  function saveDonation(event) {
+      event.preventDefault();
+
+      let amount = parseInt(document.getElementById("amount").value);
+
+      donorCount++;
+      totalAmount += amount;
+
+      localStorage.setItem("donorCount", donorCount);
+      localStorage.setItem("totalAmount", totalAmount);
+
+      document.getElementById("donorCount").textContent = donorCount;
+      document.getElementById("totalAmount").textContent = totalAmount.toLocaleString();
+
+      document.getElementById("donateForm").reset();
+      alert("Terima kasih atas donasinya!");
+
+      document.getElementById("donateForm").style.display = "none";
+  }
+
+/* ===== DAUN JATUH OTOMATIS ===== */
+const leafContainer = document.getElementById("leafContainer");
+
+function spawnLeaf() {
+  const leaf = document.createElement("div");
+  leaf.classList.add("pixel-leaf");
+
+  leaf.style.left = Math.random() * 100 + "vw";
+  leaf.style.animationDuration = (5 + Math.random() * 6) + "s";
+
+  leafContainer.appendChild(leaf);
+
+  setTimeout(() => leaf.remove(), 9000);
+}
+
+
+
+// generate daun tiap 700ms
+setInterval(spawnLeaf, 700);
+
+/* ===============================
+   GENERATE STAR RANDOM
+=============================== */
+function generateStars() {
+    for (let i = 0; i < 40; i++) {
+        const star = document.createElement("div");
+        star.classList.add("star");
+        star.style.left = Math.random() * window.innerWidth + "px";
+        star.style.top = Math.random() * window.innerHeight + "px";
+        star.style.animationDuration = (1 + Math.random()) + "s";
+        document.body.appendChild(star);
+    }
+}
+generateStars();
+
+/* ===============================
+   MODE MALAM OTOMATIS
+=============================== */
+function autoNightMode() {
+  let hour = new Date().getHours();
+  if (hour >= 18 || hour <= 5) {
+    document.body.classList.add("night-mode");
+    document.getElementById("toggleNight").textContent = "☀ Mode Siang";
+  }
+}
+autoNightMode();
+
+/* ===============================
+   TOGGLE MANUAL
+=============================== */
+document.getElementById("toggleNight").addEventListener("click", function () {
+  document.body.classList.toggle("night-mode");
+
+  if (document.body.classList.contains("night-mode")) {
+    this.textContent = "☀ Mode Siang";
+  } else {
+    this.textContent = "🌙 Mode Malam";
+  }
+});
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoVerse - Showcase Aktivitas</title>
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> -->
+
+  <style>
+    /* ===== FONT PIXEL ===== */
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    } 
+
+    /* ===== RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* ===== GLOBAL ===== */
+    body {
+      font-family: 'Press Start 2P', cursive;
+      color: #1a3e2a;
+      background: url('img/beranda1.png') center/cover fixed no-repeat;
+    }
+
+    button {
+      font-family: 'Press Start 2P', cursive;
+      padding: 12px 18px;
+      background: #1c7c1c;
+      border: 3px solid #0f4f0f;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+      border-radius: 6px;
+      font-size: 10px;
+    }
+
+    button:hover {
+      background: #34a834;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: rgba(240, 255, 240, 0.85);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+      border-bottom: 3px solid #1a3e2a;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #1a3e2a;
+      font-size: 10px;
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      color: #2e8b57;
+    }
+
+    .join-btn {
+      padding: 8px 16px;
+      margin-top: 8px;
+    }
+
+    /* HERO TITLE */
+    .hero {
+      width: 90%;
+      max-width: 850px;
+      margin: 40px auto;
+      background: rgba(255, 255, 255, 0.8);
+      border: 4px solid #0f530f;
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+        animation: fadeIn 1s ease;
+    }
+
+    #typing {
+      font-size: 16px;
+      white-space: nowrap;
+      border-right: 3px solid #0f530f;
+      width: fit-content;
+      margin: 0 auto;
+      overflow: hidden;
+      animation: blink .7s infinite;
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    /* FILTER BUTTON */
+    .filter-bar {
+      width: 90%;
+      margin: 0 auto;
+      text-align: center;
+      margin-bottom: 30px;
+      animation: fadeIn 1s ease;
+    }
+
+    .filter-btn {
+      background: #1c7c1c;
+      border: 3px solid #0f530f;
+      color: white;
+      padding: 10px 16px;
+      font-size: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 5px;
+      transition: 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: #3aba3a;
+    }
+
+    /* GRID */
+    .grid {
+      width: 90%;
+      margin: 0 auto 60px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      animation: fadeIn 1s ease;
+    }
+
+    /* CARD */
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      color: #000;
+      border: 4px solid #0f530f;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      position: relative;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    /* Hover pixel pecah */
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 12px #32ff3280;
+      filter: drop-shadow(0 0 3px #4aff4a);
+    }
+
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 3px solid #0f530f;
+    }
+
+    .card-title {
+      font-size: 12px;
+      margin-top: 12px;
+    }
+
+    .card-tag {
+      font-size: 10px;
+      color: #1e6b1e;
+      margin-top: 6px;
+    }
+
+    /* POPUP FULLSCREEN */
+    .popup {
+      position: fixed;
+      top: 0; left: 0; 
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 99;
+    }
+
+    .popup-content {
+      background: white;
+      width: 85%;
+      max-width: 600px;
+      padding: 25px;
+      border: 5px solid #0f530f;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .close-popup {
+      margin-top: 20px;
+      padding: 12px 18px;
+      border: 3px solid #0f530f;
+      background: #1c7c1c;
+      color: white;
+      cursor: pointer;
+    }
+
+    @media(max-width: 600px) {
+      nav a { margin: 0 8px; font-size: 12px; }
+      #typing { font-size: 14px; }
+    }
+    /* ===================== RESPONSIVE ======================= */
+    button {
+      font-family: 'Press Start 2P', cursive;
+      padding: 12px 18px;
+      background: #1c7c1c;
+      border: 3px solid #0f4f0f;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+      border-radius: 6px;
+      font-size: 10px;
+    }
+
+    button:hover {
+      background: #34a834;
+    }
+      /* PIXEL NIGHT MODE */
+/* =========================================== */
+
+/* Tombol ganti mode */
+.night-btn {
+  padding: 8px 14px;
+  font-size: 10px;
+  margin: 20px;
+  background: #0d3b66;
+  border: 3px solid #082641;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+.night-btn:hover {
+  background: #144a7d;
+}
+/* ===== NIGHT MODE TEXT FIX ===== */
+.night-mode,
+.night-mode h1,
+.night-mode h2,
+.night-mode h3,
+.night-mode p,
+.night-mode a,
+.night-mode span {
+  color: hsla(0, 100%, 1%, 0.94) !important;       
+  text-shadow: 0 0 5px hwb(0 100% 0%);    
+}
+/* ===== HERO BOX TRANSPARENT ON NIGHT MODE ===== */
+.night-mode .feature-text {
+  background: hwb(0 0% 100% / 0) !important; /* full transparan */
+  border-color: lab(14.97% 3.29 1.21 / 0.4) !important; /* border lembut */
+  box-shadow: none !important; /* hilangkan efek saudara kalau ada */
+}
+
+/* Teks tetap terlihat */
+.night-mode .feature-text h1,
+.night-mode .feature-text p {
+  color: #e8faff !important; /* putih kebiruan */
+  text-shadow: 0 0 6px #050c0e; /* glow agar tidak tenggelam */
+}
+
+/* Mode malam untuk body */
+.night-mode {
+  background: #0a1b2c !important;
+  color: #d4f4ff !important;
+}
+
+/* Background malam lebih gelap */
+.night-mode .feature-text,
+.night-mode header,
+.night-mode footer,
+.night-mode .feature-box,
+.night-mode .stats {
+  background: rgba(10, 20, 40, 0.7) !important;
+  color: #d4f4ff !important;
+  border-color: #7be3ff !important;
+}
+/* ===== BENEFIT BOX TEXT — NIGHT MODE ===== */
+.night-mode .feature-box h3,
+.night-mode .feature-box p {
+  color: #000 !important;   /* hitam pekat */
+  text-shadow: none !important; /* hilangkan glow agar tidak abu */
+}
+
+/* Border & background tetap, tapi bisa kamu ubah kalau mau */
+.night-mode .feature-box {
+  background: #ffffffd9 !important; /* tetap terang */
+  border-color: #ffffff !important;
+}
+/* ===== BENEFIT BOX — NIGHT MODE ===== */
+.night-mode .benefit-box,
+.night-mode .benefit-box * {
+  color: #000 !important;        /* teks hitam */
+  text-shadow: none !important;  /* hilangkan stroke/shadow */
+}
+/* ===== FOOTER NIGHT MODE (TEXT ONLY) ===== */
+.night-mode footer h3,
+.night-mode footer p,
+.night-mode footer a {
+  color: #ffffff !important;     /* putih */
+  text-shadow: none !important;
+}
+
+.night-mode footer a:hover {
+  color: #aef5c1 !important;     /* putih kehijauan saat hover */
+}
+
+
+/* Awan memudar */
+.night-mode .cloud {
+  opacity: 0;
+  transition: opacity 1.5s ease-out;
+}
+
+/* Bintang lebih banyak */
+.star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  image-rendering: pixelated;
+  animation: twinkle 1.4s infinite alternate ease-in-out;
+  opacity: 0.8;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.3; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.4); }
+}
+@keyframes neon-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+.night-mode .feature-text h1 {
+  animation: neon-flicker 2.5s infinite ease-in-out;
+}
+/* Neon effect pada menu */
+.night-mode nav a {
+  color: #8fffe0 !important;
+  text-shadow: 0 0 4px #00ffbf, 0 0 8px #00ffc8;
+}
+
+
+
+   /* ===== RESPONSIVE BREAKPOINTS ===== */
+
+    /* Tablet */
+    @media (max-width: 992px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 12px;
+      }
+
+      .feature-text {
+        width: 90%;
+      }
+
+      .feature-box {
+        width: 200px;
+      }
+    }
+
+    /* HP */
+    @media (max-width: 600px) {
+      body {
+        background-attachment: scroll;
+      }
+
+      .hero {
+        padding: 60px 10px;
+      }
+
+      .hero h1 {
+        font-size: 10px;
+      }
+
+      nav a {
+        font-size: 8px;
+      }
+
+      .join-btn {
+        padding: 4px 10px;
+        font-size: 8px;
+      }
+
+      .feature-box {
+        width: 90%;
+      }
+
+      .feature-box p {
+        font-size: 7px;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      footer div {
+        margin-bottom: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">🌿 EcoVerse</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="challenge.html">Challenge</a>
+      <a href="community.html">Community</a>
+      <a href="test.html">Showcase</a>
+    </nav>
+    <a href="profile.html"><button class="join-btn">Profile Tim</button></a>
+  </header>
+  <button id="toggleNight" class="night-btn">🌙 Mode Malam</button>
+
+
+<!-- HERO + TYPING -->
+<div class="hero">
+  <h2 id="typing"></h2>
+  <p style="font-size: 10px; margin-top: 8px;">Menampilkan Project Serta Dokumentai Yang Ingin Dilakukan Oleh Tim EcoVerse Serta Mengajak Para Donatur untuk Berinvestasi</p>
+</div>
+
+<!-- FILTER -->
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">Semua</button>
+  <button class="filter-btn" data-filter="event">Event</button>
+  <button class="filter-btn" data-filter="project">Project</button>
+  <button class="filter-btn" data-filter="design">Design</button>
+</div>
+
+<!-- GRID ACTIVITY -->
+<div class="grid">
+    <div class="card" data-category="project">
+      <img src="img/C1.png">
+      <div class="card-title">AI Guardian Protected</div>
+      <div class="card-tag">Project Utama</div>
+    </div>
+  
+  <div class="card" data-category="event">
+    <img src="img/C2.png">
+    <div class="card-title">EcoScan Workshop</div>
+    <div class="card-tag">Event Komunitas</div>
+  </div>
+
+
+  <div class="card" data-category="design">
+    <img src="img/C3.png">
+    <div class="card-title">EcoVerse UI Pack</div>
+    <div class="card-tag">Digital Design</div>
+  </div>
+
+  <div class="card" data-category="event">
+    <img src="img/C4.png">
+    <div class="card-title">Green Day Meetup</div>
+    <div class="card-tag">Event Outdoor</div>
+  </div>
+
+  <div class="card" data-category="project">
+    <img src="img/C5.png">
+    <div class="card-title">Reforest Pixel Map</div>
+    <div class="card-tag">Project Lingkungan</div>
+  </div>
+
+  <div class="card" data-category="design">
+    <img src="img/C6.png">
+    <div class="card-title">Eco Poster Series</div>
+    <div class="card-tag">Artwork</div>
+  </div>
+
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <h3 id="popupTitle"></h3>
+    <p id="popupDesc" style="font-size: 12px; margin-top:10px;"></p>
+    <button class="close-popup" onclick="closePopup()">Tutup</button>
+  </div>
+</div>
+<div class="grid">
+  <div class="card">
+    Sudah Melihat - Lihat Project Serta Dokumentasi Dari Tim EcoVerse? Tertarik Membantu Atau Berinvestasi? Silahkan Klik Tombol Dibawah
+    <br><br><a href="index.html"><button>Donasi Sekarang</button></a>
+  </div>
+</div>
+
+<script>
+  /* Typing effect */
+const text = "EcoVerse Showcase";
+let i = 0;
+function typing() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typing, 80);
+  }
+}
+typing();
+
+/* ===================== DESKRIPSI DATA ===================== */
+const showcaseData = {
+  "EcoScan Workshop": "Workshop interaktif yang mengajarkan peserta cara menggunakan EcoScan, alat digital berbasis AI untuk mengenali tanaman dan kesehatan lingkungan. Peserta mengikuti simulasi langsung dan mini-challenge lapangan.",
+  
+  "AI Guardian Protected": "AI Guardian Protected adlaah robot ai yang melindungi hutan secara 24/7 dengan cara memberikan peringatan pada seseorang yang berusaha menyebabkan kacau pada lingkungan",
+  
+  "EcoVerse UI Pack": "Kumpulan elemen UI bertema eco-pixel yang dirancang untuk aplikasi dan website EcoVerse. Menggabungkan gaya pixel art retro dan warna hijau natural.",
+  
+  "Green Day Meetup": "Kegiatan outdoor bulanan EcoVerse yang berfokus pada penanaman pohon, pembersihan taman kota, serta diskusi santai mengenai isu lingkungan.",
+  
+  "Reforest Pixel Map": "Peta digital bergaya pixel art yang menampilkan progres reforestasi di berbagai area hijau. Pengguna dapat melihat progres penanaman secara visual dan menambah titik hijau.",
+  
+  "Eco Poster Series": "Seri poster kreatif bertema lingkungan, energi hijau, dan edukasi alam. Semua poster dibuat dengan nuansa pixel art yang unik dan mudah diingat."
+};
+
+/* ===================== FILTER ===================== */
+const filterBtns = document.querySelectorAll(".filter-btn");
+const cards = document.querySelectorAll(".card");
+
+filterBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelector(".filter-btn.active").classList.remove("active");
+    btn.classList.add("active");
+
+    let filter = btn.dataset.filter;
+
+    cards.forEach(card => {
+      card.style.display =
+        filter === "all" || card.dataset.category === filter
+          ? "block"
+          : "none";
+    });
+  });
+});
+
+/* ===================== POPUP OTOMATIS ===================== */
+const popup = document.getElementById("popup");
+const popupTitle = document.getElementById("popupTitle");
+const popupDesc = document.getElementById("popupDesc");
+
+document.querySelectorAll(".card").forEach(card => {
+  card.addEventListener("click", () => {
+    const title = card.querySelector(".card-title").innerText;
+    popupTitle.innerText = title;
+
+    popupDesc.innerText = showcaseData[title] || "Deskripsi belum tersedia.";
+
+    popup.style.display = "flex";
+  });
+});
+
+function closePopup() {
+  popup.style.display = "none";
+}
+/* ===== DAUN JATUH OTOMATIS ===== */
+const leafContainer = document.getElementById("leafContainer");
+
+function spawnLeaf() {
+  const leaf = document.createElement("div");
+  leaf.classList.add("pixel-leaf");
+
+  leaf.style.left = Math.random() * 100 + "vw";
+  leaf.style.animationDuration = (5 + Math.random() * 6) + "s";
+
+  leafContainer.appendChild(leaf);
+
+  setTimeout(() => leaf.remove(), 9000);
+}
+
+// generate daun tiap 700ms
+setInterval(spawnLeaf, 700);
+
+/* ===============================
+   GENERATE STAR RANDOM
+=============================== */
+function generateStars() {
+    for (let i = 0; i < 40; i++) {
+        const star = document.createElement("div");
+        star.classList.add("star");
+        star.style.left = Math.random() * window.innerWidth + "px";
+        star.style.top = Math.random() * window.innerHeight + "px";
+        star.style.animationDuration = (1 + Math.random()) + "s";
+        document.body.appendChild(star);
+    }
+}
+generateStars();
+
+/* ===============================
+   MODE MALAM OTOMATIS
+=============================== */
+function autoNightMode() {
+  let hour = new Date().getHours();
+  if (hour >= 18 || hour <= 5) {
+    document.body.classList.add("night-mode");
+    document.getElementById("toggleNight").textContent = "☀ Mode Siang";
+  }
+}
+autoNightMode();
+
+/* ===============================
+   TOGGLE MANUAL
+=============================== */
+document.getElementById("toggleNight").addEventListener("click", function () {
+  document.body.classList.toggle("night-mode");
+
+  if (document.body.classList.contains("night-mode")) {
+    this.textContent = "☀ Mode Siang";
+  } else {
+    this.textContent = "🌙 Mode Malam";
+  }
+});
+</script>
+
+
+</body>
+</html>

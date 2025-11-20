@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Community — Halaman Komunitas</title>
+  <style>
+     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+            @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    } 
+    
+    :root{
+      --bg:#e9f7ee;
+      --card:#ffffff;
+      --muted:#4b5563;
+      --accent:#2ecc71;
+      --glass: rgba(0,0,0,0.03);
+      --radius:12px;
+      font-family: Inter, system-ui;
+      color-scheme: light;
+    }
+    
+     button {
+      font-family: 'Press Start 2P', cursive;
+      padding: 12px 18px;
+      background: #1c7c1c;
+      border: 3px solid #0f4f0f;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+      border-radius: 6px;
+      font-size: 10px;
+    }
+        button:hover {
+      background: #34a834;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: rgba(240, 255, 240, 0.85);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+      border-bottom: 3px solid #1a3e2a;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-wrap: wrap;
+      /* color:var(--var); */
+    }
+
+    .logo {
+      font-size: 14px;
+      margin-bottom: 8px;
+        font-family: 'Press Start 2P', cursive;
+    }
+
+    nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-family: 'Press Start 2P', cursive;
+        font-family: 'Press Start 2P', cursive;
+       color:var(--var);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #1a3e2a;
+      font-size: 10px;
+      transition: 0.2s;
+      font-family: 'Press Start 2P', cursive;
+    }
+
+    nav a:hover {
+      color: #2e8b57;
+      font-family: 'Press Start 2P', cursive;
+    }
+
+    .join-btn {
+      padding: 8px 16px;
+      margin-top: 8px;
+      font-family: 'Press Start 2P', cursive;
+    }
+    
+    *{box-sizing:border-box}
+    body{
+      
+      margin:0;  
+      background: url('img/beranda1.png') center/cover fixed no-repeat rgba(240, 255, 240, 0.85); 
+      color:#000000; 
+      -webkit-font-smoothing:antialiased; 
+      justify-content:center;
+      overflow-x: hidden;
+    }
+    .bg-white {
+      background: rgba(240, 255, 240, 0.85);
+      border-bottom: 3px solid #1a3e2a;
+      border-top: 3px solid #1a3e2a;
+    }
+
+    .container{animation: fadeIn 1s ease; background: transparent; width:100%; max-width:1100px; display:grid; grid-template-columns:320px 1fr; gap:20px; }
+
+    /* SIDEBAR */
+    .sidebar{ background:rgba(240, 255, 240, 0.85); padding:18px; border-radius:var(--radius); min-height:200px; color: black; }
+    .profile{ display:flex; gap:12px; align-items:center }
+    .avatar{ font-family: 'Press Start 2P', cursive; width:64px; height:64px; border-radius:14px; background:linear-gradient(135deg,#1c7c1c,#15324b); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:20px }
+    .profile h3{ font-family: 'Press Start 2P', cursive; margin:0 0 2px 0 }
+    .profile p{ margin:0; color:var(--muted); font-size:13px }
+
+    .sidebar .stats{ display:flex; gap:10px; margin-top:14px }
+    .stat{ background:var(--glass); color:black; padding:10px; border-radius:10px; flex:1; text-align:center }
+    .stat b{ display:block; font-size:18px }
+    .muted{ color:var(--muted); font-size:13px }
+
+    .filters{ margin-top:14px }
+    .filters input[type="search"]{ width:100%; padding:10px 12px; border-radius:10px; border:none; background:rgba(255,255,255,0.02); color:inherit }
+    .tag-list{ margin-top:12px; display:flex; gap:8px; flex-wrap:wrap }
+    .tag{ background: #1c7c1c; padding:6px 10px; border-radius:999px; font-size:13px; color:white; cursor:pointer }
+    .tag.active{ background:linear-gradient(90deg,var(--accent), #6cf); color:#021627 }
+
+    /* MAIN */
+    .main{ }
+    .composer{ background: rgba(240, 255, 240, 0.85); padding:14px; border-radius:var(--radius); margin-bottom:18px }
+    .composer textarea{ width:100%; min-height:80px; resize:vertical; padding:12px; border-radius:10px; border:none; background:var(--glass); color:black }
+    .composer .row{ display:flex; gap:10px; align-items:center; margin-top:10px }
+    .composer .actions{ margin-left:auto; display:flex; gap:8px }
+    .btn{ background: #1c7c1c; padding:8px 12px; border-radius:10px; border:none; color:#ffffff; font-weight:600; cursor:pointer }
+    .btn.ghost{ background:transparent; color:var(--muted); border:1px solid rgba(255,255,255,0.03) }
+    .preview-img{ max-width:140px; max-height:140px; border-radius:10px; object-fit:cover; display:block; }
+
+    .feed{ display:flex; flex-direction:column; gap:12px }
+    .post{ background: rgba(240, 255, 240, 0.85); padding:14px; border-radius:12px; color: black; }
+    .post .meta{ display:flex; gap:10px; align-items:center }
+    .post .meta .name{ font-family: 'Press Start 2P', cursive; font-weight:700 }
+    .post .content{ margin-top:10px; white-space:pre-wrap }
+    .post img{ width:100%; max-height:420px; object-fit:cover; border-radius:10px; margin-top:8px }
+    .post .post-actions{ display:flex; gap:8px; align-items:center; margin-top:12px }
+    .action{ display:inline-flex; gap:8px; align-items:center; padding:8px 10px; border-radius:10px; cursor:pointer; user-select:none }
+    .action.like.active{ background:linear-gradient(90deg,#1c7c1c); color:#021627 }
+
+    .comments{ margin-top:10px; padding-top:8px; border-top:1px dashed rgba(255,255,255,0.02) }
+    .comment{ display:flex; gap:8px; margin-top:8px }
+    .comment .c-body{ background:rgba(255,255,255,0.02); padding:8px 10px; border-radius:8px }
+    .add-comment{ display:flex; gap:8px; margin-top:8px }
+    .add-comment input{ flex:1; padding:8px 10px; border-radius:8px; border:none; background:transparent }
+     /* PIXEL NIGHT MODE */
+/* =========================================== */
+
+/* Tombol ganti mode */
+.night-btn {
+  padding: 8px 14px;
+  font-size: 10px;
+  margin: 20px;
+  background: #0d3b66;
+  border: 3px solid #082641;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+.night-btn:hover {
+  background: #144a7d;
+}
+/* ===== NIGHT MODE TEXT FIX ===== */
+.night-mode,
+.night-mode h1,
+.night-mode h2,
+.night-mode h3,
+.night-mode p,
+.night-mode a,
+.night-mode span {
+  color: hsla(0, 100%, 1%, 0.94) !important;       
+  text-shadow: 0 0 5px hwb(0 100% 0%);    
+}
+/* ===== HERO BOX TRANSPARENT ON NIGHT MODE ===== */
+.night-mode .feature-text {
+  background: hwb(0 0% 100% / 0) !important; /* full transparan */
+  border-color: lab(14.97% 3.29 1.21 / 0.4) !important; /* border lembut */
+  box-shadow: none !important; /* hilangkan efek saudara kalau ada */
+}
+
+/* Teks tetap terlihat */
+.night-mode .feature-text h1,
+.night-mode .feature-text p {
+  color: #e8faff !important; /* putih kebiruan */
+  text-shadow: 0 0 6px #050c0e; /* glow agar tidak tenggelam */
+}
+
+/* Mode malam untuk body */
+.night-mode {
+  background: #0a1b2c !important;
+  color: #d4f4ff !important;
+}
+
+/* Background malam lebih gelap */
+.night-mode .feature-text,
+.night-mode header,
+.night-mode footer,
+.night-mode .feature-box,
+.night-mode .stats {
+  background:var(--glass) !important;
+  color: #d4f4ff !important;
+  border-color: #7be3ff !important;
+}
+/* ===== BENEFIT BOX TEXT — NIGHT MODE ===== */
+.night-mode .feature-box h3,
+.night-mode .feature-box p {
+  color: #000 !important;   /* hitam pekat */
+  text-shadow: none !important; /* hilangkan glow agar tidak abu */
+}
+
+/* Border & background tetap, tapi bisa kamu ubah kalau mau */
+.night-mode .feature-box {
+  background: #ffffffd9 !important; /* tetap terang */
+  border-color: #ffffff !important;
+}
+/* ===== BENEFIT BOX — NIGHT MODE ===== */
+.night-mode .benefit-box,
+.night-mode .benefit-box * {
+  color: #000 !important;        /* teks hitam */
+  text-shadow: none !important;  /* hilangkan stroke/shadow */
+}
+/* ===== FOOTER NIGHT MODE (TEXT ONLY) ===== */
+.night-mode footer h3,
+.night-mode footer p,
+.night-mode footer a {
+  color: #ffffff !important;     /* putih */
+  text-shadow: none !important;
+}
+
+.night-mode footer a:hover {
+  color: #aef5c1 !important;     /* putih kehijauan saat hover */
+}
+
+
+/* Awan memudar */
+.night-mode .cloud {
+  opacity: 0;
+  transition: opacity 1.5s ease-out;
+}
+
+/* Bintang lebih banyak */
+.star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  image-rendering: pixelated;
+  animation: twinkle 1.4s infinite alternate ease-in-out;
+  opacity: 0.8;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.3; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.4); }
+}
+@keyframes neon-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+.night-mode .feature-text h1 {
+  animation: neon-flicker 2.5s infinite ease-in-out;
+}
+/* Neon effect pada menu */
+.night-mode nav a {
+  color: #8fffe0 !important;
+  text-shadow: 0 0 4px #00ffbf, 0 0 8px #00ffc8;
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+    /* Tablet */
+    @media (max-width: 992px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 12px;
+      }
+
+      .feature-text {
+        width: 90%;
+      }
+
+      .feature-box {
+        width: 200px;
+      }
+    }
+
+    /* HP */
+    @media (max-width: 600px) {
+      body {
+        background-attachment: scroll;
+      }
+
+      .hero {
+        padding: 60px 10px;
+      }
+
+      .hero h1 {
+        font-size: 10px;
+      }
+
+      nav a {
+        font-size: 8px;
+      }
+
+      .join-btn {
+        padding: 4px 10px;
+        font-size: 8px;
+      }
+
+      .feature-box {
+        width: 90%;
+      }
+
+      .feature-box p {
+        font-size: 7px;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      footer div {
+        margin-bottom: 15px;
+      }
+    }
+/* ========================================================= */
+/* ================== RESPONSIVE TABLET ===================== */
+/* ========================================================= */
+
+@media (max-width:900px){
+  body{ padding:14px; }
+
+  .container{
+    grid-template-columns: 1fr;
+    gap:16px;
+  }
+
+  .sidebar{
+    order: 2;
+  }
+}
+
+/* ========================================================= */
+/* ================== RESPONSIVE HP BESAR =================== */
+/* ========================================================= */
+
+@media (max-width:768px){
+
+  .avatar{ width:55px; height:55px; font-size:16px; }
+
+  button{ font-size:9px; padding:10px 14px; }
+
+  .composer textarea{
+    font-size:14px;
+  }
+
+  .post img{
+    max-height:300px;
+  }
+}
+
+/* ========================================================= */
+/* ================== RESPONSIVE HP KECIL =================== */
+/* ========================================================= */
+
+@media (max-width:480px){
+
+  body{
+    padding:10px;
+  }
+
+  .avatar{ width:48px; height:48px; font-size:14px; }
+
+  .profile h3{ font-size:14px; }
+  .profile p{ font-size:11px; }
+
+  button{
+    padding:8px 12px;
+    font-size:8px;
+  }
+
+  .tag{ font-size:11px; }
+
+  .composer{
+    padding:10px;
+  }
+
+  .composer textarea{
+    font-size:13px;
+    min-height:70px;
+  }
+
+  .row{
+    flex-wrap:wrap;
+  }
+
+  .post{
+    padding:12px;
+  }
+
+  .post img{
+    max-height:250px;
+  }
+
+    }
+  </style>
+</head>
+  <header>
+    <div class="logo">🌿 EcoVerse</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="challenge.html">Challenge</a>
+      <a href="community.html">Community</a>
+      <a href="test.html">Showcase</a>
+    </nav>
+    <a href="profile.html"><button class="join-btn">Profile Tim</button></a>
+  </header>
+  <button id="toggleNight" class="night-btn">🌙 Mode Malam</button>
+<body>
+  <div class="container" id="app">
+    <aside class="sidebar" aria-label="sidebar">
+      <div class="profile">
+        <div class="avatar" id="my-avatar">AH</div>
+        <div>
+          <h3 id="my-name">Pengguna</h3>
+          <p id="my-role">Anggota komunitas</p>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><b id="stat-posts">0</b><span class="muted">Post</span></div>
+        <div class="stat"><b id="stat-members">1</b><span class="muted">Anggota</span></div>
+      </div>
+
+      <div class="filters">
+        <label class="muted">Cari / Filter</label>
+        <input type="search" id="search" placeholder="Cari posting atau tag..." />
+        <div class="tag-list" id="tag-list">
+          <button class="tag" data-tag="Semua">Semua</button>
+          <button class="tag" data-tag="Lingkungan">Lingkungan</button>
+          <button class="tag" data-tag="Event">Event</button>
+          <button class="tag" data-tag="Tips">Tips</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section class="composer" aria-label="buat-post">
+        <textarea id="post-text" placeholder="Bagikan update, foto, atau ide..." aria-label="Tulis postingan"></textarea>
+        <div class="row">
+          <label class="ghost btn" for="image-input">Tambahkan Foto</label>
+          <input id="image-input" type="file" accept="image/*" style="display:none" />
+          <select id="tag-select" aria-label="Pilih tag" class="btn">
+            <option value="Umum">Umum</option>
+            <option value="Lingkungan">Lingkungan</option>
+            <option value="Event">Event</option>
+            <option value="Tips">Tips</option>
+          </select>
+          <div class="actions">
+            <button class="btn ghost" id="clear-btn">Bersihkan</button>
+            <button class="btn" id="post-btn">Posting</button>
+          </div>
+        </div>
+        <div id="img-preview-wrap" style="margin-top:10px; display:none">
+          <img id="img-preview" class="preview-img" alt="pratinjau gambar" />
+          <button class="btn ghost" id="remove-img">Hapus gambar</button>
+        </div>
+      </section>
+
+      <section class="feed" id="feed" aria-live="polite">
+        <!-- posts akan dimasukkan di sini -->
+      </section>
+    </main>
+  </div>
+
+  <template id="post-template">
+    <article class="post" data-id="">
+      <div class="meta">
+        <div class="avatar small">AB</div>
+        <div style="flex:1">
+          <div style="display:flex; gap:8px; align-items:center">
+            <div class="name">Nama</div>
+            <div class="muted" style="font-size:13px">• <span class="time">waktu</span></div>
+            <div class="muted" style="margin-left:auto; font-size:13px">#<span class="post-tag">Tag</span></div>
+          </div>
+          <div class="muted">lokasi (opsional)</div>
+        </div>
+      </div>
+      <div class="content">Konten</div>
+      <img src="" alt="" style="display:none"/>
+      <div class="post-actions">
+        <div class="action like" role="button" aria-pressed="false"><span class="like-count">0</span> ❤️</div>
+        <div class="action comment-btn" role="button">Komentar</div>
+        <div class="action" role="button">Bagikan</div>
+      </div>
+      <div class="comments" style="display:none">
+        <div class="comment-list"></div>
+        <div class="add-comment">
+          <input placeholder="Tulis komentar..." />
+          <button class="btn small">Kirim</button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script>
+    // Simple client-side community feed using localStorage
+    const LOCAL_KEY = 'community.posts.v1';
+
+    // app elements
+    const feedEl = document.getElementById('feed');
+    const postBtn = document.getElementById('post-btn');
+    const clearBtn = document.getElementById('clear-btn');
+    const textEl = document.getElementById('post-text');
+    const imgInput = document.getElementById('image-input');
+    const imgPreviewWrap = document.getElementById('img-preview-wrap');
+    const imgPreview = document.getElementById('img-preview');
+    const removeImgBtn = document.getElementById('remove-img');
+    const tagSelect = document.getElementById('tag-select');
+    const searchEl = document.getElementById('search');
+    const tagList = document.getElementById('tag-list');
+
+    // state
+    let posts = loadPosts();
+    let stagedImage = null; // dataURL
+
+    // initial render
+    renderFeed();
+    updateStats();
+
+    // event handlers
+    postBtn.addEventListener('click', () => {
+      const text = textEl.value.trim();
+      const tag = tagSelect.value || 'Umum';
+      if(!text && !stagedImage){
+        alert('Tulis sesuatu atau tambahkan gambar.');
+        return;
+      }
+      const p = {
+        id: 'p_'+Date.now(),
+        name: 'Pengguna',
+        initials: 'PU',
+        text,
+        tag,
+        image: stagedImage,
+        time: new Date().toISOString(),
+        likes:0,
+        liked:false,
+        comments:[]
+      };
+      posts.unshift(p);
+      savePosts();
+      renderFeed();
+      clearComposer();
+      updateStats();
+    });
+
+    clearBtn.addEventListener('click', clearComposer);
+
+    imgInput.addEventListener('change', (e)=>{
+      const file = e.target.files && e.target.files[0];
+      if(!file) return;
+      if(!file.type.startsWith('image/')){ alert('Hanya gambar yang didukung.'); return; }
+      const reader = new FileReader();
+      reader.onload = ()=>{
+        stagedImage = reader.result;
+        imgPreview.src = stagedImage;
+        imgPreviewWrap.style.display='block';
+      };
+      reader.readAsDataURL(file);
+    });
+
+    removeImgBtn.addEventListener('click', ()=>{ stagedImage=null; imgPreview.src=''; imgPreviewWrap.style.display='none'; imgInput.value=''; });
+
+    searchEl.addEventListener('input', ()=> renderFeed());
+
+    tagList.addEventListener('click', (e)=>{
+      if(e.target.matches('.tag')){
+        for(const b of tagList.children) b.classList.remove('active');
+        e.target.classList.add('active');
+        renderFeed();
+      }
+    });
+
+    function clearComposer(){ textEl.value=''; stagedImage=null; imgPreview.src=''; imgPreviewWrap.style.display='none'; imgInput.value=''; }
+
+    function renderFeed(){
+      feedEl.innerHTML='';
+      const q = searchEl.value.trim().toLowerCase();
+      const activeTagButton = tagList.querySelector('.tag.active');
+      const activeTag = activeTagButton ? activeTagButton.dataset.tag : 'Semua';
+
+      const filtered = posts.filter(p=>{
+        const matchesQuery = !q || p.text.toLowerCase().includes(q) || p.tag.toLowerCase().includes(q);
+        const matchesTag = activeTag==='Semua' || p.tag===activeTag;
+        return matchesQuery && matchesTag;
+      });
+
+      if(filtered.length===0){
+        feedEl.innerHTML = '<div class="muted">Belum ada posting. Jadilah yang pertama!</div>';
+        return;
+      }
+
+      for(const post of filtered){
+        const node = createPostNode(post);
+        feedEl.appendChild(node);
+      }
+    }
+
+    function createPostNode(post){
+      const tpl = document.getElementById('post-template');
+      const el = tpl.content.cloneNode(true);
+      const article = el.querySelector('.post');
+      article.dataset.id = post.id;
+      article.querySelector('.avatar.small').textContent = post.initials || initialsFromName(post.name);
+      article.querySelector('.name').textContent = post.name;
+      article.querySelector('.time').textContent = timeAgo(new Date(post.time));
+      article.querySelector('.post-tag').textContent = post.tag;
+      const contentEl = article.querySelector('.content');
+      contentEl.textContent = post.text;
+      const img = article.querySelector('img');
+      if(post.image){ img.src = post.image; img.style.display='block' } else { img.style.display='none' }
+
+      const likeBtn = article.querySelector('.action.like');
+      const likeCount = article.querySelector('.like-count');
+      likeCount.textContent = post.likes;
+      if(post.liked) likeBtn.classList.add('active');
+
+      likeBtn.addEventListener('click', ()=>{
+        post.liked = !post.liked;
+        post.likes += post.liked ? 1 : -1;
+        likeCount.textContent = post.likes;
+        likeBtn.classList.toggle('active', post.liked);
+        savePosts();
+        updateStats();
+      });
+
+      const commentArea = article.querySelector('.comments');
+      const commentListEl = article.querySelector('.comment-list');
+      const addCommentInput = article.querySelector('.add-comment input');
+      const addCommentBtn = article.querySelector('.add-comment button');
+
+      function renderComments(){
+        commentListEl.innerHTML='';
+        if(post.comments.length===0){ commentListEl.innerHTML='<div class="muted" style="font-size:13px">Belum ada komentar</div>' }
+        for(const c of post.comments){
+          const cNode = document.createElement('div'); cNode.className='comment';
+          cNode.innerHTML = `<div class="avatar small">${initialsFromName(c.name)}</div><div class="c-body"><b style="font-size:13px">${escapeHtml(c.name)}</b><div style="font-size:13px; color:var(--muted)">${escapeHtml(c.text)}</div></div>`;
+          commentListEl.appendChild(cNode);
+        }
+      }
+      renderComments();
+
+      article.querySelector('.comment-btn').addEventListener('click', ()=>{ commentArea.style.display = commentArea.style.display==='none'? 'block':'none' });
+      addCommentBtn.addEventListener('click', ()=>{
+        const text = addCommentInput.value.trim(); if(!text) return;
+        post.comments.push({ name:'Pengguna', text });
+        addCommentInput.value='';
+        renderComments();
+        savePosts();
+      });
+
+      return article;
+    }
+
+    // localStorage helpers
+    function loadPosts(){
+      try{ const raw = localStorage.getItem(LOCAL_KEY); if(!raw) return samplePosts(); return JSON.parse(raw) }catch(e){ return samplePosts() }
+    }
+    function savePosts(){ localStorage.setItem(LOCAL_KEY, JSON.stringify(posts)) }
+
+    function updateStats(){ document.getElementById('stat-posts').textContent = posts.length; }
+
+    // small helpers
+    function initialsFromName(n){ return (n||'U').split(' ').map(s=>s[0]).slice(0,2).join('').toUpperCase() }
+    function timeAgo(d){ const s = Math.floor((Date.now()-d)/1000); if(s<60) return s+ ' detik lalu'; if(s<3600) return Math.floor(s/60) + ' menit lalu'; if(s<86400) return Math.floor(s/3600)+' jam lalu'; return Math.floor(s/86400)+' hari lalu' }
+
+    function escapeHtml(s){ return (s+'').replace(/[&<>"']/g, (c)=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;" })[c]) }
+
+    function samplePosts(){
+      return [
+        {
+          id:'p_sample2', name:'Angga', initials:'AG', text:'Ayo tanam pohon di kampung kita minggu depan! \nSiap bantu? RSVP di sini.', tag:'Event', image:null, time:new Date(Date.now()-3600*1000*10).toISOString(), likes:3, liked:false, comments:[{name:'Sari', text:'Saya ikut!' }]
+        },
+        { id:'p_sample1', name:'Maya', initials:'MY', text:'Tips merawat tanaman hias: jangan terlalu sering menyiram.', tag:'Tips', image:null, time:new Date(Date.now()-3600*1000*48).toISOString(), likes:2, liked:false, comments:[] }
+      ];
+    }
+    /* ===== DAUN JATUH OTOMATIS ===== */
+const leafContainer = document.getElementById("leafContainer");
+
+function spawnLeaf() {
+  const leaf = document.createElement("div");
+  leaf.classList.add("pixel-leaf");
+
+  leaf.style.left = Math.random() * 100 + "vw";
+  leaf.style.animationDuration = (5 + Math.random() * 6) + "s";
+
+  leafContainer.appendChild(leaf);
+
+  setTimeout(() => leaf.remove(), 9000);
+}
+
+// generate daun tiap 700ms
+setInterval(spawnLeaf, 700);
+
+/* ===============================
+   GENERATE STAR RANDOM
+=============================== */
+function generateStars() {
+    for (let i = 0; i < 40; i++) {
+        const star = document.createElement("div");
+        star.classList.add("star");
+        star.style.left = Math.random() * window.innerWidth + "px";
+        star.style.top = Math.random() * window.innerHeight + "px";
+        star.style.animationDuration = (1 + Math.random()) + "s";
+        document.body.appendChild(star);
+    }
+}
+generateStars();
+
+/* ===============================
+   MODE MALAM OTOMATIS
+=============================== */
+function autoNightMode() {
+  let hour = new Date().getHours();
+  if (hour >= 18 || hour <= 5) {
+    document.body.classList.add("night-mode");
+    document.getElementById("toggleNight").textContent = "☀ Mode Siang";
+  }
+}
+autoNightMode();
+
+/* ===============================
+   TOGGLE MANUAL
+=============================== */
+document.getElementById("toggleNight").addEventListener("click", function () {
+  document.body.classList.toggle("night-mode");
+
+  if (document.body.classList.contains("night-mode")) {
+    this.textContent = "☀ Mode Siang";
+  } else {
+    this.textContent = "🌙 Mode Malam";
+  }
+});
+  </script>
+</body>
+</html>

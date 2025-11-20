@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoVerse Profile - Ultimate Pixel Edition</title>
+<!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+
+<!-- FONT PIXEL -->
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+        @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+     /* ===== RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* ===== GLOBAL ===== */
+    body {
+      font-family: 'Press Start 2P', cursive;
+      color: #1a3e2a;
+      background: url('img/beranda1.png') center/cover fixed no-repeat;
+    }
+
+    button {
+      font-family: 'Press Start 2P', cursive;
+      padding: 12px 18px;
+      background: #1c7c1c;
+      border: 3px solid #0f4f0f;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+      border-radius: 6px;
+      font-size: 10px;
+    }
+
+    button:hover {
+      background: #34a834;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: rgba(240, 255, 240, 0.85);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+      border-bottom: 3px solid #1a3e2a;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #1a3e2a;
+      font-size: 10px;
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      color: #2e8b57;
+    }
+
+    .join-btn {
+      padding: 8px 16px;
+      margin-top: 8px;
+    }
+
+    
+
+    /* CONTACT BOX */
+    .contact-box {
+      background: rgba(255, 255, 255, 0.8);
+      border: 4px solid #0f530f;
+      width: 80%;
+      max-width: 700px;
+      margin: 80px auto;
+      padding: 40px;
+      text-align: center;
+      border-radius: 10px;
+    }
+
+    .contact-box h2 {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    .contact-box p {
+      font-size: 12px;
+      margin-bottom: 25px;
+    }
+
+    input, textarea {
+      width: 90%;
+      padding: 12px;
+      border: 3px solid #0f4f0f;
+      border-radius: 8px;
+      font-family: 'Press Start 2P', cursive;
+      margin-bottom: 20px;
+      background: #e8ffe8;
+      font-size: 10px;
+    }
+
+    textarea {
+      height: 120px;
+      resize: none;
+    }
+
+    button {
+      font-family: 'Press Start 2P', cursive;
+      padding: 12px 18px;
+      background: #1c7c1c;
+      border: 3px solid #0f4f0f;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+      border-radius: 6px;
+      font-size: 10px;
+    }
+
+    button:hover {
+      background: #34a834;
+    }
+    
+
+    /* BALON NOTIFIKASI */
+#notifBubble {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #e8ffe8;
+  border: 4px solid #0f530f;
+  padding: 20px 30px;
+  font-size: 12px;
+  z-index: 9999;
+  border-radius: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease;
+  font-family: 'Press Start 2P', cursive;
+}
+
+#notifBubble.show {
+  opacity: 1;
+  top: 47%;
+}
+
+/* ===================== PROFILE CARD ======================= */
+
+.team {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.team-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.team-card {
+    width: 200px;
+    padding: 16px;
+    border: 4px solid #1d5f36;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.85);
+    box-shadow: 0 10px 0 rgba(0,0,0,0.12);
+    text-align: center;
+      animation: fadeIn 1s ease;
+    
+}
+
+.team-card img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 3px solid #164b2b;
+    margin-bottom: 8px;
+}
+.team h2 {
+    color: white;       /* Ubah warna di sini */
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.team-card h3 {
+    margin: 6px 0 4px;
+    font-size: 14px;
+    color: #143d23;
+}
+
+.team-card .role {
+    font-size: 11px;
+    color: #1a5536;
+    margin-bottom: 4px;
+}
+/* ===================== BUTTON VISI-MISI ======================= */
+
+  /* PIXEL NIGHT MODE */
+/* =========================================== */
+
+/* Tombol ganti mode */
+.night-btn {
+  padding: 8px 14px;
+  font-size: 10px;
+  margin: 20px;
+  background: #0d3b66;
+  border: 3px solid #082641;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+.night-btn:hover {
+  background: #144a7d;
+}
+/* ===== NIGHT MODE TEXT FIX ===== */
+.night-mode,
+.night-mode h1,
+.night-mode h2,
+.night-mode h3,
+.night-mode p,
+.night-mode a,
+.night-mode span {
+  color: hsla(0, 100%, 1%, 0.94) !important;       
+  text-shadow: 0 0 5px hwb(0 100% 0%);    
+}
+/* ===== HERO BOX TRANSPARENT ON NIGHT MODE ===== */
+.night-mode .feature-text {
+  background: hwb(0 0% 100% / 0) !important; /* full transparan */
+  border-color: lab(14.97% 3.29 1.21 / 0.4) !important; /* border lembut */
+  box-shadow: none !important; /* hilangkan efek saudara kalau ada */
+}
+
+/* Teks tetap terlihat */
+.night-mode .feature-text h1,
+.night-mode .feature-text p {
+  color: #e8faff !important; /* putih kebiruan */
+  text-shadow: 0 0 6px #050c0e; /* glow agar tidak tenggelam */
+}
+
+/* Mode malam untuk body */
+.night-mode {
+  background: #0a1b2c !important;
+  color: #d4f4ff !important;
+}
+
+/* Background malam lebih gelap */
+.night-mode .feature-text,
+.night-mode header,
+.night-mode footer,
+.night-mode .feature-box,
+.night-mode .stats {
+  background: rgba(10, 20, 40, 0.7) !important;
+  color: #d4f4ff !important;
+  border-color: #7be3ff !important;
+}
+/* ===== BENEFIT BOX TEXT — NIGHT MODE ===== */
+.night-mode .feature-box h3,
+.night-mode .feature-box p {
+  color: #000 !important;   /* hitam pekat */
+  text-shadow: none !important; /* hilangkan glow agar tidak abu */
+}
+
+/* Border & background tetap, tapi bisa kamu ubah kalau mau */
+.night-mode .feature-box {
+  background: #ffffffd9 !important; /* tetap terang */
+  border-color: #ffffff !important;
+}
+/* ===== BENEFIT BOX — NIGHT MODE ===== */
+.night-mode .benefit-box,
+.night-mode .benefit-box * {
+  color: #000 !important;        /* teks hitam */
+  text-shadow: none !important;  /* hilangkan stroke/shadow */
+}
+/* ===== FOOTER NIGHT MODE (TEXT ONLY) ===== */
+.night-mode footer h3,
+.night-mode footer p,
+.night-mode footer a {
+  color: #ffffff !important;     /* putih */
+  text-shadow: none !important;
+}
+
+.night-mode footer a:hover {
+  color: #aef5c1 !important;     /* putih kehijauan saat hover */
+}
+
+
+/* Awan memudar */
+.night-mode .cloud {
+  opacity: 0;
+  transition: opacity 1.5s ease-out;
+}
+
+/* Bintang lebih banyak */
+.star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  image-rendering: pixelated;
+  animation: twinkle 1.4s infinite alternate ease-in-out;
+  opacity: 0.8;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.3; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.4); }
+}
+@keyframes neon-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+.night-mode .feature-text h1 {
+  animation: neon-flicker 2.5s infinite ease-in-out;
+}
+/* Neon effect pada menu */
+.night-mode nav a {
+  color: #8fffe0 !important;
+  text-shadow: 0 0 4px #00ffbf, 0 0 8px #00ffc8;
+}
+
+
+
+/* ===================== POPUP FULLSCREEN ======================= */
+
+#popup{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-box{
+    width: 80%;
+    max-width: 700px;
+    background: white;
+    padding: 30px 25px;          /* beri padding horizontal & vertikal */
+    border: 4px solid #1d5f36;
+    border-radius: 14px;
+    animation: zoom 0.35s ease;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    line-height: 1.6;            /* jarak antar baris teks */
+    color: #143d23;
+}
+
+.popup-box h3 {
+    margin-bottom: 15px;          /* jarak antara judul dan teks */
+    font-size: 14px;
+    color: #0e3a22;
+}
+
+.popup-box p {
+    margin-bottom: 18px;          /* jarak antara paragraf */
+    white-space: pre-line;        /* agar baris baru tampil */
+}
+
+
+
+@keyframes zoom{
+    from{transform: scale(0.3);}
+    to{transform: scale(1);}
+}
+
+
+/* ===================== ABOUT TYPING ======================= */
+
+#typing{
+  
+    font-family: 'Press Start 2P', monospace;
+    font-size: 16px;
+    color: white;
+    
+}
+
+
+
+/* ===================== TEAM ======================= */
+
+.team{
+    margin-top: 60px;
+    text-align:center;
+}
+
+.team-container{
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+.team-card{
+    width:220px;
+    padding:20px;
+    background:rgba(255,255,255,0.7);
+    border-radius:14px;
+    border:4px solid #1d5f36;
+    transition:0.25s;
+}
+
+/* 🌟 Glow hijau */
+.team-card:hover{
+    transform:scale(1.08);
+    box-shadow:0px 0px 20px #31ff7c;
+}
+
+.team-card img{
+    width:150px;
+    height:150px;
+    border:3px solid #164b2b;
+    border-radius:10px;
+    object-fit:cover;
+}
+
+/* ===================== SLIDE PANEL MOBILE ======================= */
+
+#sidepanel{
+    position:fixed;
+    top:0;
+    left:-260px;
+    width:260px;
+    height:100%;
+    background:#c8ffdb;
+    padding:30px;
+    border-right:4px solid #164b2b;
+    transition:0.4s;
+    z-index:2000;
+}
+#sidepanel a{
+    display:block;
+    margin:20px 0;
+}
+
+/* ===================== RESPONSIVE ======================= */
+
+    /* ===== RESPONSIVE BREAKPOINTS ===== */
+
+    /* Tablet */
+    @media (max-width: 992px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 12px;
+      }
+
+      .feature-text {
+        width: 90%;
+      }
+
+      .feature-box {
+        width: 200px;
+      }
+    }
+
+    /* HP */
+    @media (max-width: 600px) {
+      body {
+        background-attachment: scroll;
+      }
+
+      .hero {
+        padding: 60px 10px;
+      }
+
+      .hero h1 {
+        font-size: 10px;
+      }
+
+      nav a {
+        font-size: 8px;
+      }
+
+      .join-btn {
+        padding: 4px 10px;
+        font-size: 8px;
+      }
+
+      .feature-box {
+        width: 90%;
+      }
+
+      .feature-box p {
+        font-size: 7px;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      footer div {
+        margin-bottom: 15px;
+      }
+    }
+
+</style>
+
+
+</head>
+<body class="crt">
+
+<!-- ========== MOBILE PANEL BUTTON ========== -->
+<button class="menu-btn" onclick="togglePanel()" style="position:absolute; right:20px; top:20px; display:none;">☰</button>
+
+<!-- <div id="sidepanel">
+    <a href="#">Home</a>
+    <a href="#">Challenge</a>
+    <a href="#">Community</a>
+    <a href="#">Showcase</a>
+</div> -->
+
+ <header>
+    <div class="logo">🌿 EcoVerse</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="challenge.html">Challenge</a>
+      <a href="community.html">Community</a>
+      <a href="test.html">Showcase</a>
+    </nav>
+ <a href="profile.html"><button class="join-btn">Profile Tim</button></a>       
+</header>
+<button id="toggleNight" class="night-btn">🌙 Mode Malam</button>
+
+<!-- ===================== PROFILE ======================= -->
+
+<div class="profile-card">
+
+    <img src="img/logo.png" class="profile-image">
+
+    <h2>GreenCoder</h2>
+    <p>EcoTech Developer</p>
+
+    <div class="section-buttons">
+        <button class="section-btn" onclick="openPopup('Visi','Menjadi komunitas inovatif yang peduli lingkungan melalui teknologi hijau dan solusi digital yang berkelanjutan.')">Visi</button>
+        <button class="section-btn" onclick="openPopup('Misi','1.Mendidik masyarakat tentang teknologi ramah lingkungan.\n2.Mengembangkan inovasi digital yang mendukung pelestarian alam.\n3.Menginspirasi generasi muda untuk berkontribusi pada lingkungan melalui kreativitas dan teknologi.')">Misi</button>
+        <button class="section-btn" onclick="openPopup('Harapan','Mewujudkan masa depan hijau, di mana teknologi dan alam hidup berdampingan harmonis untuk generasi mendatang.')">Harapan</button>
+    </div>
+
+    <div id="typing"></div>
+</div>
+
+<style>
+.profile-card {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    border: 4px solid #164b2b;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 6px 0 rgba(0,0,0,0.15);
+    text-align: center;
+    font-family: 'Press Start 2P', monospace;
+    animation: fadeIn 1s ease;
+
+    /* anti-blur settings */
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: none;
+    font-smooth: never;
+    image-rendering: pixelated;
+}
+
+
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 4px solid #164b2b;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.profile-card h2 {
+    margin-bottom: 6px;
+    color: #0e3a22;
+}
+
+.profile-card p {
+    margin-bottom: 20px;
+    color: #1a5536;
+    font-size: 12px;
+}
+.section-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;            /* jarak antar tombol */
+    justify-content: center;
+    margin-bottom: 25px;  /* jarak ke elemen bawah */
+}
+
+.section-btn {
+    padding: 12px 16px;      /* ruang dalam tombol lebih lega */
+    border: 4px solid #164b2b;
+      background: #2e8b57;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 1.8;        /* jarak antar baris teks dalam tombol */
+    max-width: 220px;        /* batasi lebar tombol */
+    text-align: center;      /* teks rata tengah */
+    word-wrap: break-word;   /* teks panjang otomatis wrap */
+}
+
+.section-btn:hover {
+    background: #82e6a2;
+    transform: translateY(-2px);
+}
+
+#typing {
+    text-align: left;
+    font-size: 11px;
+    color: #143d23;
+    white-space: pre-line;  /* agar baris baru muncul */
+    line-height: 1.4;
+    padding: 10px 15px;
+    border-top: 2px dashed #164b2b;
+    margin-top: 20px;
+}
+</style>
+
+
+<!-- ===================== POPUP ======================= -->
+
+<div id="popup">
+    <div class="popup-box">
+        <h2 id="popup-title"></h2>
+        <p id="popup-content"></p>
+        <button class="section-btn" onclick="closePopup()">Tutup</button>
+    </div>
+</div>
+
+<!-- ===================== TEAM ======================= -->
+
+<div class="team">
+    <h2>Meet Our Team</h2>
+
+    <div class="team-container">
+
+        <div class="team-card">
+            <img src="img/avatar3.jpg" alt="Nama 1">
+            <h3>Sheyla Rahmaniar</h3>
+            <p class="role">Frontend &UI/UX Designer</p>
+        </div>
+
+        <div class="team-card">
+            <img src="img/avatar1.jpg" alt="Nama 2">
+            <h3>Naila</h3>
+            <p class="role">UI/UX Designer</p>
+        </div>
+
+        <div class="team-card">
+            <img src="img/avatar22.jpg" alt="Nama 3">
+            <h3>Farel</h3>
+            <p class="role">Backend Developer</p>
+        </div>
+
+    </div>
+</div>
+<div class="contact-box">
+  <h2>Contact EcoVerse Team</h2>
+  <p>Have questions? Feedback? Send us a message below 🌱</p>
+
+  <form>
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea placeholder="Your Message..." required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+  <div id="notifBubble">Your message has been sent! 🎉</div>
+
+</div>
+
+</body>
+<script>
+  const form = document.querySelector("form");
+  const notif = document.getElementById("notifBubble");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); // mencegah reload halaman
+
+    // Tampilkan balon notifikasi
+    notif.classList.add("show");
+
+    // Hilangkan setelah 3 detik
+    setTimeout(() => {
+      notif.classList.remove("show");
+    }, 3000);
+
+    // Reset form
+    form.reset();
+  });
+</script>
+
+<script>
+
+/* ================= POPUP ================= */
+function openPopup(title, text){
+    document.getElementById("popup-title").innerText = title;
+    document.getElementById("popup-content").innerText = text;
+    document.getElementById("popup").style.display = "flex";
+}
+function closePopup(){
+    document.getElementById("popup").style.display = "none";
+}
+
+/* ================= TYPING ANIMATION ================= */
+let text = `About Me:
+EcoVerse adalah sebuah komunitas kreatif yang menggabungkan teknologi dan kepedulian lingkungan. Kami percaya bahwa inovasi digital dapat menjadi sarana untuk edukasi, inspirasi, dan aksi nyata bagi pelestarian alam.
+
+Tim kami terdiri dari pengembang, desainer, dan kreator yang bersemangat menciptakan solusi ramah lingkungan melalui proyek-proyek digital interaktif. Dari permainan edukatif hingga simulasi ramah lingkungan, setiap karya kami bertujuan untuk menumbuhkan kesadaran hijau di kalangan masyarakat, khususnya generasi muda.
+
+Kami berkomitmen untuk:
+- Mendorong kreativitas berbasis teknologi yang mendukung lingkungan.
+- Menciptakan pengalaman digital yang edukatif dan menyenangkan.
+- Menginspirasi perubahan positif melalui inovasi berkelanjutan.
+
+Bergabunglah bersama kami untuk membangun masa depan hijau melalui teknologi dan kreativitas. 🌿`;
+
+let i = 0;
+
+function typing(){
+    if(i < text.length){
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typing, 40); // kecepatan 40ms per karakter
+    }
+}
+
+typing();
+
+
+/* ================= PANEL SLIDE ================= */
+function togglePanel(){
+    let p = document.getElementById("sidepanel");
+    p.style.left = (p.style.left === "0px") ? "-260px" : "0px";
+}
+
+/* ===== DAUN JATUH OTOMATIS ===== */
+const leafContainer = document.getElementById("leafContainer");
+
+function spawnLeaf() {
+  const leaf = document.createElement("div");
+  leaf.classList.add("pixel-leaf");
+
+  leaf.style.left = Math.random() * 100 + "vw";
+  leaf.style.animationDuration = (5 + Math.random() * 6) + "s";
+
+  leafContainer.appendChild(leaf);
+
+  setTimeout(() => leaf.remove(), 9000);
+}
+
+// generate daun tiap 700ms
+setInterval(spawnLeaf, 700);
+
+/* ===============================
+   GENERATE STAR RANDOM
+=============================== */
+function generateStars() {
+    for (let i = 0; i < 40; i++) {
+        const star = document.createElement("div");
+        star.classList.add("star");
+        star.style.left = Math.random() * window.innerWidth + "px";
+        star.style.top = Math.random() * window.innerHeight + "px";
+        star.style.animationDuration = (1 + Math.random()) + "s";
+        document.body.appendChild(star);
+    }
+}
+generateStars();
+
+/* ===============================
+   MODE MALAM OTOMATIS
+=============================== */
+function autoNightMode() {
+  let hour = new Date().getHours();
+  if (hour >= 18 || hour <= 5) {
+    document.body.classList.add("night-mode");
+    document.getElementById("toggleNight").textContent = "☀ Mode Siang";
+  }
+}
+autoNightMode();
+
+/* ===============================
+   TOGGLE MANUAL
+=============================== */
+document.getElementById("toggleNight").addEventListener("click", function () {
+  document.body.classList.toggle("night-mode");
+
+  if (document.body.classList.contains("night-mode")) {
+    this.textContent = "☀ Mode Siang";
+  } else {
+    this.textContent = "🌙 Mode Malam";
+  }
+});
+</script>
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-content">
+        <p>🌿 &copy; 2025 EcoVerse. All rights reserved.</p>
+
+        <div class="footer-social">
+            <a href="https://www.instagram.com/univ.haluoleo" target="_blank">Instagram</a>
+            <span>|</span>
+            <a href="https://twitter.com/uho__" target="_blank">Twitter</a>
+            <span>|</span>
+            <a href="https://www.youtube.com/@univ.haluoleo" target="_blank">YouTube</a>
+        </div>
+    </div>
+</footer>
+
+<style>
+.footer {
+      background: rgba(240, 255, 240, 0.85);
+    color: #000000;
+    padding: 15px 0;
+    text-align: center;
+    font-family: 'Press Start 2P', monospace;
+    border-top: 4px solid #000000;
+    margin-top: 30px;
+}
+
+/* Konten footer */
+.footer-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Bagian sosial */
+.footer-social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.footer-social a {
+    color: #636363;
+    text-decoration: none;
+}
+
+.footer-social a:hover {
+    text-decoration: underline;
+}
+
+.footer-social span {
+    opacity: 0.6;
+}
+
+
+/* Responsif Tablet */
+@media (max-width: 768px) {
+    .footer {
+        padding: 30px 0;
+    }
+
+    .footer-social {
+        gap: 12px;
+        font-size: 9px;
+    }
+}
+
+/* Responsif HP */
+@media (max-width: 480px) {
+    .footer {
+        font-size: 10px;
+    }
+
+    .footer-social {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .footer-social span {
+        display: none; /* hilangkan "|" saat tampil vertikal */
+    }
+}
+</style>
+
+
+
+
+</body>
+</html>
